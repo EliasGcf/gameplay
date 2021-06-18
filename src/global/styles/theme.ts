@@ -6,6 +6,11 @@ export const theme = {
     heading: '#DDE3F0',
   },
 
+  backgroundGradient: {
+    from: '#0E1647',
+    to: '#0A1033',
+  },
+
   fonts: {
     rajdhani: {
       bold: 'Rajdhani_700Bold',
@@ -17,4 +22,4 @@ export const theme = {
       medium: 'Inter_500Medium',
     },
   },
-};
+} as const;
