@@ -13,7 +13,7 @@ export function SignIn() {
   const animationState = useAnimationState({
     from: { translateX: -100, scale: 1 },
     to: { translateX: 0, scale: 1 },
-    pressed: { scale: 1.2 },
+    pressed: { scale: 1.05 },
   });
 
   const SignInButtonPressedIn = useCallback(() => {
