@@ -1,5 +1,4 @@
 import React, { useCallback } from 'react';
-import { StatusBar } from 'expo-status-bar';
 import { MotiView, useAnimationState } from 'moti';
 
 import IllustrationImg from '../../assets/illustration/image.png';
@@ -30,7 +29,6 @@ export function SignIn() {
 
   return (
     <>
-      <StatusBar style="light" />
       <Container>
         <BackgroundImage source={IllustrationImg} resizeMode="stretch" />
 
@@ -41,7 +39,7 @@ export function SignIn() {
             transition={{ type: 'timing', duration: 1500 }}
           >
             <Title>
-              Organize{'\n'}suas jogatinas{'\n'}facilmente
+              Conecte-se{'\n'}e organize suas{'\n'}jogatinas
             </Title>
 
             <Description>

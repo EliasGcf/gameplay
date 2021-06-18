@@ -20,16 +20,19 @@ export const Content = styled.View`
 `;
 
 export const Title = styled.Text`
-  color: ${theme.colors.heading};
-  text-align: center;
   font-size: 40px;
+  line-height: 40px;
+  text-align: center;
   margin-bottom: 16px;
-  font-weight: bold;
+  color: ${theme.colors.heading};
+  font-family: ${theme.fonts.rajdhani.bold};
 `;
 
 export const Description = styled.Text`
-  color: ${theme.colors.heading};
-  text-align: center;
   font-size: 15px;
+  line-height: 25px;
+  text-align: center;
   margin-bottom: 64px;
+  color: ${theme.colors.heading};
+  font-family: ${theme.fonts.inter.regular};
 `;

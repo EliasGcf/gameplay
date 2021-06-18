@@ -33,7 +33,7 @@ export const WrapperIcon = styled.View`
 export const Title = styled.Text`
   padding: 0 40px 0 40px;
   font-size: 15px;
-  font-weight: 500;
   text-align: center;
   color: ${theme.colors.heading};
+  font-family: ${theme.fonts.inter.medium};
 `;

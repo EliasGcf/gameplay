@@ -8,7 +8,11 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "@expo-google-fonts/inter": "^0.1.0",
+    "@expo-google-fonts/rajdhani": "^0.1.0",
     "expo": "~41.0.1",
+    "expo-app-loading": "^1.0.3",
+    "expo-font": "~9.1.0",
     "expo-status-bar": "~1.0.4",
     "moti": "^0.11.0",
     "react": "16.13.1",
