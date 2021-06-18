@@ -11,10 +11,12 @@ export const Container = styled.View`
 
 export const BackgroundImage = styled.Image`
   width: 100%;
+  max-width: 387px;
 `;
 
 export const Content = styled.View`
   margin-top: -60px;
+  align-items: center;
 `;
 
 export const Title = styled.Text`
