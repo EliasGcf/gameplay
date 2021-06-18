@@ -1,6 +1,6 @@
-import React from 'react';
-import { MotiView } from 'moti';
+import React, { useCallback } from 'react';
 import { StatusBar } from 'expo-status-bar';
+import { MotiView, useAnimationState } from 'moti';
 
 import IllustrationImg from '../../assets/illustration/image.png';
 
@@ -10,6 +10,24 @@ import { DiscordSvg } from '../../components/DiscordSvg';
 import { Container, BackgroundImage, Content, Title, Description } from './styles';
 
 export function SignIn() {
+  const animationState = useAnimationState({
+    from: { translateX: -100, scale: 1 },
+    to: { translateX: 0, scale: 1 },
+    pressed: { scale: 1.2 },
+  });
+
+  const SignInButtonPressedIn = useCallback(() => {
+    if (animationState.current === 'to') {
+      animationState.transitionTo('pressed');
+    }
+  }, []);
+
+  const SignInButtonPressedOut = useCallback(() => {
+    if (animationState.current === 'pressed') {
+      animationState.transitionTo('to');
+    }
+  }, []);
+
   return (
     <>
       <StatusBar style="light" />
@@ -31,8 +49,13 @@ export function SignIn() {
             </Description>
           </MotiView>
 
-          <MotiView from={{ translateX: -100 }} animate={{ translateX: 0 }}>
-            <ButtonIcon title="Entrar com Discord" Icon={<DiscordSvg />} />
+          <MotiView state={animationState}>
+            <ButtonIcon
+              Icon={<DiscordSvg />}
+              title="Entrar com Discord"
+              onPressIn={SignInButtonPressedIn}
+              onPressOut={SignInButtonPressedOut}
+            />
           </MotiView>
         </Content>
       </Container>
