@@ -1,17 +1,16 @@
 import styled from 'styled-components/native';
 import { theme } from '../../global/styles/theme';
 
-export const Container = styled.View`
-  height: 50px;
+export const Row = styled.View`
   flex-direction: row;
-`
+`;
 
 export const Content = styled.View`
   flex: 1;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
   margin-left: 20px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 `;
 
 export const Greeting = styled.Text`
