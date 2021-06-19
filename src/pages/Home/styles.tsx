@@ -15,3 +15,5 @@ export const HomeHeader = styled.View.attrs({
   padding-left: 24px;
   padding-right: 24px;
 `;
+
+export const Content = styled.View``;
