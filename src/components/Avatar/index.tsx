@@ -1,7 +1,15 @@
 import React from 'react';
 
-import { Image } from './styles';
+import { ContainerGradient, Image } from './styles';
 
-export function Avatar() {
-  return <Image source={{ uri: 'https://github.com/eliasgcf.png' }} />;
+type AvatarProps = {
+  urlImage: string;
+};
+
+export function Avatar({ urlImage }: AvatarProps) {
+  return (
+    <ContainerGradient colors={['#243189', '#1B2565']}>
+      <Image source={{ uri: urlImage }} />
+    </ContainerGradient>
+  );
 }

@@ -11,7 +11,7 @@ import { theme } from '../../global/styles/theme';
 export function Header() {
   return (
     <Container>
-      <Avatar />
+      <Avatar urlImage="https://github.com/EliasGcf.png" />
 
       <Content>
         <View>
@@ -23,7 +23,6 @@ export function Header() {
         </View>
 
         <ButtonIcon
-          onPress={console.log}
           Icon={<MaterialIcons name="add" size={24} color={theme.colors.heading} />}
         />
       </Content>
