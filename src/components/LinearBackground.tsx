@@ -1,11 +1,11 @@
 import React, { ReactNode } from 'react';
+import { StyleProp, ViewStyle } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 
 import { theme } from '../global/styles/theme';
-import { StyleProp, ViewStyle } from 'react-native';
 
 type LinearBackgroundProps = {
-  children: ReactNode;
+  children?: ReactNode;
   style?: StyleProp<ViewStyle>;
 };
 

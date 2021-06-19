@@ -5,12 +5,13 @@ import { getStatusBarHeight } from 'react-native-iphone-x-helper';
 
 import { Header } from '../../components/Header';
 import { ListHeader } from '../../components/ListHeader';
+import { LinearBackground } from '../../components/LinearBackground';
 
 import { Appointment } from '../../utils/appointments';
 
-export const Container = styled.View`
+export const Container = styled(LinearBackground)`
   flex: 1;
-  margin-top: ${`${getStatusBarHeight() + 26}px`};
+  padding-top: ${`${getStatusBarHeight() + 26}px`};
 `;
 
 export const HomeHeader = styled.View.attrs({

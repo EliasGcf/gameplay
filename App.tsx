@@ -5,8 +5,6 @@ import { StatusBar } from 'expo-status-bar';
 import { Inter_500Medium, Inter_400Regular } from '@expo-google-fonts/inter';
 import { Rajdhani_700Bold, Rajdhani_500Medium } from '@expo-google-fonts/rajdhani';
 
-import { LinearBackground } from './src/components/LinearBackground';
-
 import { Routes } from './src/routes/index.routes';
 
 export default function App() {
@@ -22,9 +20,9 @@ export default function App() {
   }
 
   return (
-    <LinearBackground>
+    <>
       <StatusBar style="light" />
       <Routes />
-    </LinearBackground>
+    </>
   );
 }

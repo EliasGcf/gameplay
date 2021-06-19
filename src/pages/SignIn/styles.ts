@@ -2,7 +2,9 @@ import styled from 'styled-components/native';
 
 import { theme } from '../../global/styles/theme';
 
-export const Container = styled.View`
+import { LinearBackground } from '../../components/LinearBackground';
+
+export const Container = styled(LinearBackground)`
   flex: 1;
   align-items: center;
   justify-content: center;
