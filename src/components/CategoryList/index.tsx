@@ -7,24 +7,31 @@ import { categories } from '../../utils/categories';
 import { ContainerList } from './styles';
 
 export function CategoryList() {
-  const [selectedCategory, setSelectedCategory] = useState(categories[0].id);
+  const [selectedCategory, setSelectedCategory] = useState('');
 
   function handleOnCardPress(categoryId: string) {
+    if (categoryId === selectedCategory) {
+      setSelectedCategory('');
+      return;
+    }
+
     setSelectedCategory(categoryId);
   }
 
   return (
-    <ContainerList>
-      {categories.map(category => (
-        <View key={category.id} style={{ marginRight: 8 }}>
-          <CategoryCard
-            title={category.title}
-            icon={category.icon}
-            isSelected={selectedCategory === category.id}
-            onPress={() => handleOnCardPress(category.id)}
-          />
-        </View>
-      ))}
-    </ContainerList>
+    <View>
+      <ContainerList>
+        {categories.map(category => (
+          <View key={category.id} style={{ marginRight: 8 }}>
+            <CategoryCard
+              title={category.title}
+              icon={category.icon}
+              isSelected={selectedCategory === category.id}
+              onPress={() => handleOnCardPress(category.id)}
+            />
+          </View>
+        ))}
+      </ContainerList>
+    </View>
   );
 }

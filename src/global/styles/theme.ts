@@ -4,7 +4,9 @@ export const theme = {
 
     background: '#0d133d',
     heading: '#DDE3F0',
-    subheading: '#ABB1CC'
+    subheading: '#ABB1CC',
+
+    on: '#32BD50',
   },
 
   backgroundGradient: {
