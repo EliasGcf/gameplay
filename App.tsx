@@ -7,8 +7,7 @@ import { Rajdhani_700Bold, Rajdhani_500Medium } from '@expo-google-fonts/rajdhan
 
 import { LinearBackground } from './src/components/LinearBackground';
 
-import { SignIn } from './src/pages/SignIn';
-import { Home } from './src/pages/Home';
+import { Routes } from './src/routes/index.routes';
 
 export default function App() {
   const [fontsIsLoaded] = useFonts({
@@ -25,7 +24,7 @@ export default function App() {
   return (
     <LinearBackground>
       <StatusBar style="light" />
-      <Home />
+      <Routes />
     </LinearBackground>
   );
 }
