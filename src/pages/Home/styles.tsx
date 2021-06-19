@@ -16,4 +16,6 @@ export const HomeHeader = styled.View.attrs({
   padding-right: 24px;
 `;
 
-export const Content = styled.View``;
+export const Content = styled.View`
+  margin-top: 40px;
+`;
