@@ -1,7 +1,6 @@
 import React from 'react';
+import { MotiView } from 'moti';
 import { View } from 'react-native';
-
-import { CategoryList } from '../../components/CategoryList';
 
 import { AppointmentItem } from './AppointmentItem';
 
@@ -14,6 +13,7 @@ import {
   HomeHeader,
   AppointmentsList,
   HomeHeaderList,
+  HomeCategoryList,
 } from './styles';
 
 export function Home() {
@@ -22,14 +22,19 @@ export function Home() {
       <HomeHeader />
 
       <Content>
-        <CategoryList />
+        <HomeCategoryList />
 
-        <HomeHeaderList
-          title="Partidas agendadas"
-          description={`Total ${appointments.length}`}
-        />
+        <MotiView
+          style={{ flex: 1 }}
+          from={{ translateY: 300 }}
+          animate={{ translateY: 0 }}
+          transition={{ type: 'timing', duration: 500 }}
+        >
+          <HomeHeaderList
+            title="Partidas agendadas"
+            description={`Total ${appointments.length}`}
+          />
 
-        <View style={{ flex: 1 }}>
           <AppointmentsList
             data={appointments}
             renderItem={({ item }) => (
@@ -46,7 +51,7 @@ export function Home() {
             ItemSeparatorComponent={() => <View style={{ height: 32 }} />}
             keyExtractor={item => item.id}
           />
-        </View>
+        </MotiView>
       </Content>
     </Container>
   );

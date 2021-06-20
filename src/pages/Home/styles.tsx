@@ -1,10 +1,12 @@
 import React from 'react';
+import { MotiView } from 'moti';
 import { FlatList } from 'react-native';
 import styled from 'styled-components/native';
 import { getStatusBarHeight } from 'react-native-iphone-x-helper';
 
 import { Header } from '../../components/Header';
 import { ListHeader } from '../../components/ListHeader';
+import { CategoryList } from '../../components/CategoryList';
 import { LinearBackground } from '../../components/LinearBackground';
 
 import { Appointment } from '../../utils/appointments';
@@ -14,7 +16,10 @@ export const Container = styled(LinearBackground)`
   padding-top: ${`${getStatusBarHeight() + 26}px`};
 `;
 
-export const HomeHeader = styled.View.attrs({
+export const HomeHeader = styled(MotiView).attrs({
+  from: { translateY: -100 },
+  animate: { translateY: 0 },
+  transition: { type: 'timing', duration: 500 },
   children: <Header />,
 })`
   padding-left: 24px;
@@ -25,6 +30,13 @@ export const Content = styled.View`
   margin-top: 40px;
   flex: 1;
 `;
+
+export const HomeCategoryList = styled(MotiView).attrs({
+  from: { translateX: 200 },
+  animate: { translateX: 0 },
+  transition: { type: 'timing', duration: 500 },
+  children: <CategoryList />,
+})``;
 
 export const HomeHeaderList = styled(ListHeader)`
   padding-left: 24px;

@@ -5,12 +5,12 @@ import { MaterialIcons } from '@expo/vector-icons';
 import { Avatar } from '../Avatar';
 import { ButtonIcon } from '../ButtonIcon';
 
-import { Row, Content, Message, Username, Greeting } from './styles';
+import { Container, Row, Content, Message, Username, Greeting } from './styles';
 import { theme } from '../../global/styles/theme';
 
 export function Header() {
   return (
-    <Row>
+    <Container style={{ alignItems: 'center' }}>
       <Avatar urlImage="https://github.com/EliasGcf.png" />
 
       <Content>
@@ -26,6 +26,6 @@ export function Header() {
           Icon={<MaterialIcons name="add" size={24} color={theme.colors.heading} />}
         />
       </Content>
-    </Row>
+    </Container>
   );
 }
