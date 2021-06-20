@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import { MotiView, useAnimationState } from 'moti';
+import { MotiView } from 'moti';
 import { useNavigation } from '@react-navigation/native';
 
 import IllustrationImg from '../../assets/illustration/image.png';
@@ -12,20 +12,6 @@ import { Container, BackgroundImage, Content, Title, Description } from './style
 export function SignIn() {
   const navigation = useNavigation();
 
-  const animationState = useAnimationState({
-    from: { translateX: -100, scale: 1 },
-    to: { translateX: 0, scale: 1 },
-    pressed: { scale: 1.05 },
-  });
-
-  const SignInButtonPressedIn = useCallback(() => {
-    animationState.transitionTo('pressed');
-  }, []);
-
-  const SignInButtonPressedOut = useCallback(() => {
-    animationState.transitionTo('to');
-  }, []);
-
   const handleNavigateToSignIn = useCallback(() => {
     navigation.navigate('Home');
   }, []);
@@ -35,11 +21,7 @@ export function SignIn() {
       <BackgroundImage source={IllustrationImg} resizeMode="stretch" />
 
       <Content>
-        <MotiView
-          from={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ type: 'timing', duration: 1500 }}
-        >
+        <MotiView from={{ translateY: 100 }} animate={{ translateY: 0 }}>
           <Title>
             Conecte-se{'\n'}e organize suas{'\n'}jogatinas
           </Title>
@@ -49,13 +31,15 @@ export function SignIn() {
           </Description>
         </MotiView>
 
-        <MotiView state={animationState}>
+        <MotiView
+          from={{ translateX: -100, opacity: 0 }}
+          animate={{ translateX: 0, opacity: 1 }}
+          delay={400}
+        >
           <ButtonIcon
             Icon={<DiscordSvg />}
             title="Entrar com Discord"
             onPress={handleNavigateToSignIn}
-            onPressIn={SignInButtonPressedIn}
-            onPressOut={SignInButtonPressedOut}
           />
         </MotiView>
       </Content>
