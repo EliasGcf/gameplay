@@ -19,15 +19,11 @@ export function SignIn() {
   });
 
   const SignInButtonPressedIn = useCallback(() => {
-    if (animationState.current === 'to') {
-      animationState.transitionTo('pressed');
-    }
+    animationState.transitionTo('pressed');
   }, []);
 
   const SignInButtonPressedOut = useCallback(() => {
-    if (animationState.current === 'pressed') {
-      animationState.transitionTo('to');
-    }
+    animationState.transitionTo('to');
   }, []);
 
   const handleNavigateToSignIn = useCallback(() => {
