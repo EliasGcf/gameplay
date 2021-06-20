@@ -32,7 +32,6 @@ export const ContentGradient = styled(LinearGradient).attrs<ContentGradientProps
   height: 118px;
   border-radius: 8px;
 
-  align-items: center;
   justify-content: center;
 `;
 
