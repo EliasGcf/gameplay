@@ -25,9 +25,9 @@ export const LinearBorder = styled(LinearGradient).attrs<any, LinearGradientProp
 `;
 
 // prettier-ignore
-export const ContentGradient = styled(LinearGradient).attrs<ContentGradientProps,LinearGradientProps>(props => ({
-  colors: [props.isSelected ? '#171F52' : '#1D2766', '#1D2766'],
-}))<ContentGradientProps>`
+export const ContentGradient = styled(LinearGradient).attrs<ContentGradientProps,LinearGradientProps>({
+  colors: ['#171F52', '#1D2766'],
+})`
   width: 102px;
   height: 118px;
   border-radius: 8px;

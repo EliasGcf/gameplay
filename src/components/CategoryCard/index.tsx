@@ -51,7 +51,7 @@ export function CategoryCard({
 
   return (
     <LinearBorder>
-      <ContentGradient isSelected={isSelected}>
+      <ContentGradient>
         {showCheckbox && (
           <MotiView state={checkboxAnimationState}>
             <Checkbox isChecked={isSelected} />
