@@ -1,6 +1,7 @@
 import React from 'react';
 import { MotiView } from 'moti';
-import { View } from 'react-native';
+import { Pressable, View } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 import { AppointmentItem } from './AppointmentItem';
 
@@ -17,6 +18,8 @@ import {
 } from './styles';
 
 export function Home() {
+  const navigation = useNavigation();
+
   return (
     <Container>
       <HomeHeader />
@@ -38,15 +41,18 @@ export function Home() {
           <AppointmentsList
             data={appointments}
             renderItem={({ item }) => (
-              <AppointmentItem
-                name={item.guild.name}
-                category={
-                  categories.find(category => category.id === item.category)?.title || ''
-                }
-                date={item.date}
-                isOwner={item.guild.owner}
-                imageUrl={item.guild.icon}
-              />
+              <Pressable onPress={() => navigation.navigate('ServerDetails')}>
+                <AppointmentItem
+                  name={item.guild.name}
+                  category={
+                    categories.find(category => category.id === item.category)?.title ||
+                    ''
+                  }
+                  date={item.date}
+                  isOwner={item.guild.owner}
+                  imageUrl={item.guild.icon}
+                />
+              </Pressable>
             )}
             ItemSeparatorComponent={() => <View style={{ height: 32 }} />}
             keyExtractor={item => item.id}
