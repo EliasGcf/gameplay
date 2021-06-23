@@ -6,8 +6,8 @@ import { getStatusBarHeight } from 'react-native-iphone-x-helper';
 
 import { Header } from '../../components/Header';
 import { ListHeader } from '../../components/ListHeader';
-import { CategoryList } from '../../components/CategoryList';
 import { LinearBackground } from '../../components/LinearBackground';
+import { CategoryList, CategoryListProps } from '../../components/CategoryList';
 
 import { Appointment } from '../../utils/appointments';
 
@@ -31,12 +31,14 @@ export const Content = styled.View`
   flex: 1;
 `;
 
-export const HomeCategoryList = styled(MotiView).attrs({
-  from: { translateX: 200 },
-  animate: { translateX: 0 },
-  transition: { type: 'timing', duration: 500 },
-  children: <CategoryList />,
-})``;
+export const HomeCategoryList = styled(MotiView).attrs(props => {
+  return {
+    from: { translateX: 200 },
+    animate: { translateX: 0 },
+    transition: { type: 'timing', duration: 500 },
+    children: <CategoryList {...props} />,
+  };
+})<CategoryListProps>``;
 
 export const HomeHeaderList = styled(ListHeader)`
   padding-left: 24px;

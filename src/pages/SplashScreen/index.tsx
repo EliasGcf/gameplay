@@ -8,7 +8,7 @@ export function SplashScreenPage() {
 
   useEffect(() => {
     const timeout = setTimeout(() => {
-      navigation.reset({ routes: [{ name: 'Home' }] });
+      navigation.reset({ routes: [{ name: 'SignIn' }] });
     }, 2000);
 
     return () => {

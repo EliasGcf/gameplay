@@ -1,6 +1,6 @@
 import React from 'react';
 import { MotiView } from 'moti';
-import { Pressable, View } from 'react-native';
+import { TouchableOpacity, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 import { AppointmentItem } from './AppointmentItem';
@@ -41,7 +41,10 @@ export function Home() {
           <AppointmentsList
             data={appointments}
             renderItem={({ item }) => (
-              <Pressable onPress={() => navigation.navigate('ServerDetails')}>
+              <TouchableOpacity
+                activeOpacity={0.7}
+                onPress={() => navigation.navigate('ServerDetails')}
+              >
                 <AppointmentItem
                   name={item.guild.name}
                   category={
@@ -52,7 +55,7 @@ export function Home() {
                   isOwner={item.guild.owner}
                   imageUrl={item.guild.icon}
                 />
-              </Pressable>
+              </TouchableOpacity>
             )}
             ItemSeparatorComponent={() => <View style={{ height: 32 }} />}
             keyExtractor={item => item.id}

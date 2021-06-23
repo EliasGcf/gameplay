@@ -38,6 +38,7 @@ export function SignIn() {
         >
           <ButtonIcon
             Icon={<DiscordSvg />}
+            style={{ width: 274 }}
             title="Entrar com Discord"
             onPress={handleNavigateToSignIn}
           />

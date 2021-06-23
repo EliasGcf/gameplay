@@ -2,6 +2,7 @@ import React from 'react';
 import { TouchableOpacity } from 'react-native';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import { Home } from '../pages/Home';
@@ -32,6 +33,15 @@ export function AuthRoutes() {
           headerTitle: 'Detalhes',
           headerTitleAlign: 'center',
           headerTintColor: theme.colors.heading,
+          headerBackTitleVisible: false,
+          headerLeftContainerStyle: { marginLeft: 16 },
+          headerBackImage: () => (
+            <MaterialCommunityIcons
+              name="arrow-left"
+              size={24}
+              color={theme.colors.heading}
+            />
+          ),
           headerRightContainerStyle: { marginRight: 20 },
           headerTitleStyle: { fontSize: 20, fontFamily: theme.fonts.rajdhani.bold },
           headerBackground: () => (

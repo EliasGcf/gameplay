@@ -6,7 +6,11 @@ import { categories } from '../../utils/categories';
 
 import { ContainerList } from './styles';
 
-export function CategoryList() {
+export type CategoryListProps = {
+  showCardCheckbox?: boolean;
+};
+
+export function CategoryList({ showCardCheckbox = false }: CategoryListProps) {
   const [selectedCategory, setSelectedCategory] = useState('');
 
   function handleOnCardPress(categoryId: string) {
@@ -26,6 +30,7 @@ export function CategoryList() {
             <CategoryCard
               title={category.title}
               icon={category.icon}
+              showCheckbox={showCardCheckbox}
               isSelected={selectedCategory === category.id}
               onPress={() => handleOnCardPress(category.id)}
             />

@@ -1,5 +1,5 @@
 import React from 'react';
-import { TouchableOpacityProps } from 'react-native';
+import { TouchableOpacityProps, View } from 'react-native';
 
 import { Title, TouchableContainer, WrapperIcon } from './styles';
 
@@ -21,7 +21,9 @@ export function ButtonIcon({ title, Icon, ...rest }: ButtonIconProps) {
     <TouchableContainer hasTitle {...rest}>
       <WrapperIcon>{Icon}</WrapperIcon>
 
-      <Title>{title}</Title>
+      <View style={{ justifyContent: 'center', flex: 1 }}>
+        <Title>{title}</Title>
+      </View>
     </TouchableContainer>
   );
 }

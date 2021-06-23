@@ -31,7 +31,6 @@ export const WrapperIcon = styled.View`
 `;
 
 export const Title = styled.Text`
-  padding: 0 40px 0 40px;
   font-size: 15px;
   text-align: center;
   color: ${theme.colors.heading};

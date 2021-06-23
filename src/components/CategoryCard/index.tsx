@@ -23,7 +23,7 @@ export function CategoryCard({
   title,
   icon: Icon,
   isSelected = false,
-  showCheckbox = true,
+  showCheckbox = false,
   ...rest
 }: CategoryCardProps) {
   const animationState = useAnimationState({
