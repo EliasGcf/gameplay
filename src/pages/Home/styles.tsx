@@ -4,7 +4,7 @@ import { FlatList } from 'react-native';
 import styled from 'styled-components/native';
 import { getStatusBarHeight } from 'react-native-iphone-x-helper';
 
-import { Header } from '../../components/Header';
+import { Header, HeaderProps } from '../../components/Header';
 import { ListHeader } from '../../components/ListHeader';
 import { LinearBackground } from '../../components/LinearBackground';
 import { CategoryList, CategoryListProps } from '../../components/CategoryList';
@@ -16,12 +16,14 @@ export const Container = styled(LinearBackground)`
   padding-top: ${`${getStatusBarHeight() + 26}px`};
 `;
 
-export const HomeHeader = styled(MotiView).attrs({
-  from: { translateY: -100 },
-  animate: { translateY: 0 },
-  transition: { type: 'timing', duration: 500 },
-  children: <Header />,
-})`
+export const HomeHeader = styled(MotiView).attrs((props: HeaderProps) => {
+  return {
+    from: { translateY: -100 },
+    animate: { translateY: 0 },
+    transition: { type: 'timing', duration: 500 },
+    children: <Header {...props} />,
+  };
+})<HeaderProps>`
   padding-left: 24px;
   padding-right: 24px;
 `;

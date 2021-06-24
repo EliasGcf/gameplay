@@ -22,10 +22,10 @@ export function Home() {
 
   return (
     <Container>
-      <HomeHeader />
+      <HomeHeader onButtonIconPress={() => navigation.navigate('CreateAppointment')} />
 
       <Content>
-        <HomeCategoryList />
+        <HomeCategoryList style={{ marginLeft: 24 }} />
 
         <MotiView
           style={{ flex: 1 }}

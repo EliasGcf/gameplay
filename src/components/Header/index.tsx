@@ -8,7 +8,11 @@ import { ButtonIcon } from '../ButtonIcon';
 import { Container, Row, Content, Message, Username, Greeting } from './styles';
 import { theme } from '../../global/styles/theme';
 
-export function Header() {
+export type HeaderProps = {
+  onButtonIconPress: () => void;
+};
+
+export function Header({ onButtonIconPress }: HeaderProps) {
   return (
     <Container style={{ alignItems: 'center' }}>
       <Avatar urlImage="https://github.com/EliasGcf.png" />
@@ -23,6 +27,7 @@ export function Header() {
         </View>
 
         <ButtonIcon
+          onPress={onButtonIconPress}
           Icon={<MaterialIcons name="add" size={24} color={theme.colors.heading} />}
         />
       </Content>

@@ -9,6 +9,7 @@ import { Home } from '../pages/Home';
 import { SignIn } from '../pages/SignIn';
 import { SplashScreenPage } from '../pages/SplashScreen';
 import { ServerDetails } from '../pages/ServerDetails';
+import { CreateAppointment } from '../pages/CreateAppointment';
 
 import { theme } from '../global/styles/theme';
 
@@ -51,6 +52,29 @@ export function AuthRoutes() {
             <TouchableOpacity activeOpacity={0.7}>
               <FontAwesome5 name="share-alt" size={24} color={theme.colors.primary} />
             </TouchableOpacity>
+          ),
+        }}
+      />
+      <Screen
+        name="CreateAppointment"
+        component={CreateAppointment}
+        options={{
+          headerShown: true,
+          headerTitleAlign: 'center',
+          headerBackTitleVisible: false,
+          headerTitle: 'Agendar partida',
+          headerTintColor: theme.colors.heading,
+          headerLeftContainerStyle: { marginLeft: 16 },
+          headerTitleStyle: { fontSize: 20, fontFamily: theme.fonts.rajdhani.bold },
+          headerBackImage: () => (
+            <MaterialCommunityIcons
+              name="arrow-left"
+              size={24}
+              color={theme.colors.heading}
+            />
+          ),
+          headerBackground: () => (
+            <LinearGradient style={{ flex: 1 }} colors={['#1D2766', '#171F52']} />
           ),
         }}
       />

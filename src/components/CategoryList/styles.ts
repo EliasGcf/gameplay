@@ -5,6 +5,4 @@ export const ContainerList = styled(ScrollView).attrs<any, ScrollViewProps>({
   showsHorizontalScrollIndicator: false,
   contentContainerStyle: { paddingRight: 40 },
   horizontal: true,
-})`
-  padding-left: 24px;
-`;
+})``;

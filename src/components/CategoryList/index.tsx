@@ -1,16 +1,23 @@
 import React, { useState } from 'react';
-import { View } from 'react-native';
+import { StyleProp, View } from 'react-native';
 
 import { CategoryCard } from '../CategoryCard';
 import { categories } from '../../utils/categories';
 
 import { ContainerList } from './styles';
+import { ViewStyle } from 'react-native';
 
 export type CategoryListProps = {
   showCardCheckbox?: boolean;
+  styleList?: StyleProp<ViewStyle>;
+  styleCard?: StyleProp<ViewStyle>;
 };
 
-export function CategoryList({ showCardCheckbox = false }: CategoryListProps) {
+export function CategoryList({
+  showCardCheckbox = false,
+  styleList,
+  styleCard,
+}: CategoryListProps) {
   const [selectedCategory, setSelectedCategory] = useState('');
 
   function handleOnCardPress(categoryId: string) {
@@ -24,7 +31,7 @@ export function CategoryList({ showCardCheckbox = false }: CategoryListProps) {
 
   return (
     <View>
-      <ContainerList>
+      <ContainerList style={styleList}>
         {categories.map(category => (
           <View key={category.id} style={{ marginRight: 8 }}>
             <CategoryCard
@@ -33,6 +40,10 @@ export function CategoryList({ showCardCheckbox = false }: CategoryListProps) {
               showCheckbox={showCardCheckbox}
               isSelected={selectedCategory === category.id}
               onPress={() => handleOnCardPress(category.id)}
+              style={[
+                styleCard || {},
+                selectedCategory === category.id ? { opacity: 1 } : {},
+              ]}
             />
           </View>
         ))}
