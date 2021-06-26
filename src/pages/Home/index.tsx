@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { MotiView } from 'moti';
 import { TouchableOpacity, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
@@ -18,14 +18,28 @@ import {
 } from './styles';
 
 export function Home() {
+  const [selectedCategoryId, setSelectedCategoryId] = useState('');
   const navigation = useNavigation();
+
+  function handleOnCardPress(categoryId: string) {
+    if (categoryId === selectedCategoryId) {
+      setSelectedCategoryId('');
+      return;
+    }
+
+    setSelectedCategoryId(categoryId);
+  }
 
   return (
     <Container>
       <HomeHeader onButtonIconPress={() => navigation.navigate('CreateAppointment')} />
 
       <Content>
-        <HomeCategoryList style={{ marginLeft: 24 }} />
+        <HomeCategoryList
+          selectedCategoryId={selectedCategoryId}
+          onCardPress={handleOnCardPress}
+          style={{ marginLeft: 24 }}
+        />
 
         <MotiView
           style={{ flex: 1 }}

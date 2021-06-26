@@ -62,6 +62,7 @@ const guilds = [
 
 export function CreateAppointment() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedCategoryId, setSelectedCategoryId] = useState('');
   const [selectedGuild, setSelectedGuild] = useState<typeof guilds[0] | null>(null);
   const scrollViewRef = useRef<ScrollView>(null);
   const headerHeight = useHeaderHeight();
@@ -77,6 +78,10 @@ export function CreateAppointment() {
   function handleGuildSelected(guild: typeof guilds[0]) {
     setSelectedGuild(guild);
     closeModal();
+  }
+
+  function handleCategorySelected(categoryId: string) {
+    setSelectedCategoryId(categoryId);
   }
 
   useEffect(() => {
@@ -101,7 +106,12 @@ export function CreateAppointment() {
       >
         <Container>
           <ListHeader title="Categoria" style={{ marginBottom: 12 }} />
-          <CategoryList showCardCheckbox styleCard={{ opacity: 0.5 }} />
+          <CategoryList
+            showCardCheckbox
+            styleCard={{ opacity: 0.5 }}
+            onCardPress={handleCategorySelected}
+            selectedCategoryId={selectedCategoryId}
+          />
 
           <Form>
             <ServerButton

@@ -33,7 +33,7 @@ export const Content = styled.View`
   flex: 1;
 `;
 
-export const HomeCategoryList = styled(MotiView).attrs(props => {
+export const HomeCategoryList = styled(MotiView).attrs((props: CategoryListProps) => {
   return {
     from: { translateX: 200 },
     animate: { translateX: 0 },
