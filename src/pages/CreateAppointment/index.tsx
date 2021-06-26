@@ -62,6 +62,7 @@ const guilds = [
 
 export function CreateAppointment() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedGuild, setSelectedGuild] = useState<typeof guilds[0] | null>(null);
   const scrollViewRef = useRef<ScrollView>(null);
   const headerHeight = useHeaderHeight();
 
@@ -71,6 +72,11 @@ export function CreateAppointment() {
 
   function handleKeyboardShow() {
     scrollViewRef.current?.scrollToEnd();
+  }
+
+  function handleGuildSelected(guild: typeof guilds[0]) {
+    setSelectedGuild(guild);
+    closeModal();
   }
 
   useEffect(() => {
@@ -98,7 +104,12 @@ export function CreateAppointment() {
           <CategoryList showCardCheckbox styleCard={{ opacity: 0.5 }} />
 
           <Form>
-            <ServerButton onPress={() => setIsModalOpen(true)} />
+            <ServerButton
+              game={selectedGuild?.gameName}
+              guildName={selectedGuild?.name}
+              imageUrl={selectedGuild?.imageUrl}
+              onPress={() => setIsModalOpen(true)}
+            />
 
             <DateSection>
               <View>
@@ -139,7 +150,10 @@ export function CreateAppointment() {
           data={guilds}
           keyExtractor={item => item.id}
           renderItem={({ item, index }) => (
-            <TouchableOpacity activeOpacity={0.5}>
+            <TouchableOpacity
+              activeOpacity={0.5}
+              onPress={() => handleGuildSelected(item)}
+            >
               <GuildItem
                 name={item.name}
                 game={item.gameName}

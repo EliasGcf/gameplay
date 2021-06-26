@@ -14,23 +14,19 @@ import {
 
 import { theme } from '../../../global/styles/theme';
 
-type ServerButtonProps = RectButtonProps & {};
+type ServerButtonProps = RectButtonProps & {
+  guildName?: string;
+  imageUrl?: string;
+  game?: string;
+};
 
-export function ServerButton({ ...rest }: ServerButtonProps) {
-  const serverSelected = false;
+export function ServerButton({ guildName, game, imageUrl, ...rest }: ServerButtonProps) {
+  const serverSelected = !!guildName && !!guildName;
 
   return (
     <RectButton {...rest}>
       <ServerSelect>
-        {serverSelected ? (
-          <ServerImage
-            source={{
-              uri: 'https://res.cloudinary.com/eliasgcf/image/upload/v1624123148/Rectangle_mazwn3.png',
-            }}
-          />
-        ) : (
-          <Block />
-        )}
+        {serverSelected ? <ServerImage source={{ uri: imageUrl }} /> : <Block />}
 
         <Row
           style={{
@@ -41,8 +37,8 @@ export function ServerButton({ ...rest }: ServerButtonProps) {
         >
           {serverSelected ? (
             <View style={{ marginLeft: 20 }}>
-              <ServerSelectText>Valorosos</ServerSelectText>
-              <ServerSelectDescription>Valorant</ServerSelectDescription>
+              <ServerSelectText>{guildName}</ServerSelectText>
+              <ServerSelectDescription>{game}</ServerSelectDescription>
             </View>
           ) : (
             <ServerSelectText>Selecione um servidor</ServerSelectText>
