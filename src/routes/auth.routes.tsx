@@ -6,7 +6,7 @@ import { SplashScreenPage } from '../pages/SplashScreen';
 
 const { Navigator, Screen } = createStackNavigator();
 
-export function SignInRoutes() {
+export function AuthRoutes() {
   return (
     <Navigator
       screenOptions={{

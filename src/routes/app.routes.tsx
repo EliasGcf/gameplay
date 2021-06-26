@@ -15,7 +15,7 @@ import { theme } from '../global/styles/theme';
 
 const { Navigator, Screen } = createStackNavigator();
 
-export function AuthenticatedRoutes() {
+export function AppRoutes() {
   return (
     <Navigator
       screenOptions={{

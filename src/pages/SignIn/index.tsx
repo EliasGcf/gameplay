@@ -1,6 +1,5 @@
 import React, { useCallback } from 'react';
 import { MotiView } from 'moti';
-import { useNavigation } from '@react-navigation/native';
 
 import IllustrationImg from '../../assets/illustration/image.png';
 
@@ -20,7 +19,7 @@ export function SignIn() {
     try {
       await signIn();
     } catch (error) {
-      Alert.alert(error.message);
+      Alert.alert('Eita!', error.message);
     }
   }, []);
 

@@ -51,7 +51,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       };
 
       setData({ token, user });
-    } catch {
+    } catch (error) {
       throw new Error(
         'Não foi possível realizar a autenticação, tente novamente mais tarde.',
       );
