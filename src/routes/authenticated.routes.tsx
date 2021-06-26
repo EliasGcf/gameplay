@@ -15,7 +15,7 @@ import { theme } from '../global/styles/theme';
 
 const { Navigator, Screen } = createStackNavigator();
 
-export function AuthRoutes() {
+export function AuthenticatedRoutes() {
   return (
     <Navigator
       screenOptions={{
@@ -23,8 +23,11 @@ export function AuthRoutes() {
         headerShown: false,
       }}
     >
-      <Screen name="SplashScreen" component={SplashScreenPage} />
-      <Screen name="SignIn" component={SignIn} />
+      <Screen
+        name="SplashScreen"
+        component={SplashScreenPage}
+        initialParams={{ goToPage: 'Home' }}
+      />
       <Screen name="Home" component={Home} />
       <Screen
         name="ServerDetails"

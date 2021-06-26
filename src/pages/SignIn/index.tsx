@@ -4,16 +4,24 @@ import { useNavigation } from '@react-navigation/native';
 
 import IllustrationImg from '../../assets/illustration/image.png';
 
+import { useAuth } from '../../hooks/useAuth';
+
 import { ButtonIcon } from '../../components/ButtonIcon';
 import { DiscordSvg } from '../../components/DiscordSvg';
 
 import { Container, BackgroundImage, Content, Title, Description } from './styles';
+import { ActivityIndicator, Alert } from 'react-native';
+import { theme } from '../../global/styles/theme';
 
 export function SignIn() {
-  const navigation = useNavigation();
+  const { signIn, isLoading } = useAuth();
 
-  const handleNavigateToSignIn = useCallback(() => {
-    navigation.navigate('Home');
+  const handleNavigateToSignIn = useCallback(async () => {
+    try {
+      await signIn();
+    } catch (error) {
+      Alert.alert(error.message);
+    }
   }, []);
 
   return (
@@ -36,12 +44,20 @@ export function SignIn() {
           animate={{ translateX: 0, opacity: 1 }}
           delay={400}
         >
-          <ButtonIcon
-            Icon={<DiscordSvg />}
-            style={{ width: 274 }}
-            title="Entrar com Discord"
-            onPress={handleNavigateToSignIn}
-          />
+          {isLoading ? (
+            <ActivityIndicator
+              style={{ height: 56 }}
+              size={24}
+              color={theme.colors.primary}
+            />
+          ) : (
+            <ButtonIcon
+              Icon={<DiscordSvg />}
+              style={{ width: 274 }}
+              title="Entrar com Discord"
+              onPress={handleNavigateToSignIn}
+            />
+          )}
         </MotiView>
       </Content>
     </Container>

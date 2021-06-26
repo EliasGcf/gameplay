@@ -5,6 +5,8 @@ import { useNavigation } from '@react-navigation/native';
 
 import { AppointmentItem } from './AppointmentItem';
 
+import { useAuth } from '../../hooks/useAuth';
+
 import { categories } from '../../utils/categories';
 import { appointments } from '../../utils/appointments';
 
@@ -21,6 +23,8 @@ export function Home() {
   const [selectedCategoryId, setSelectedCategoryId] = useState('');
   const navigation = useNavigation();
 
+  const { user } = useAuth('isAuthenticated');
+
   function handleOnCardPress(categoryId: string) {
     if (categoryId === selectedCategoryId) {
       setSelectedCategoryId('');
@@ -32,7 +36,11 @@ export function Home() {
 
   return (
     <Container>
-      <HomeHeader onButtonIconPress={() => navigation.navigate('CreateAppointment')} />
+      <HomeHeader
+        name={user.firstName}
+        imageUrl={user?.avatarUrl}
+        onButtonIconPress={() => navigation.navigate('CreateAppointment')}
+      />
 
       <Content>
         <HomeCategoryList

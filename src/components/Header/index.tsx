@@ -9,19 +9,21 @@ import { Container, Row, Content, Message, Username, Greeting } from './styles';
 import { theme } from '../../global/styles/theme';
 
 export type HeaderProps = {
+  name: string;
+  imageUrl: string;
   onButtonIconPress: () => void;
 };
 
-export function Header({ onButtonIconPress }: HeaderProps) {
+export function Header({ name, imageUrl, onButtonIconPress }: HeaderProps) {
   return (
     <Container style={{ alignItems: 'center' }}>
-      <Avatar urlImage="https://github.com/EliasGcf.png" />
+      <Avatar urlImage={imageUrl} />
 
       <Content>
         <View>
           <Row>
             <Greeting>Olá, </Greeting>
-            <Username>Elias</Username>
+            <Username>{name}</Username>
           </Row>
           <Message>Hoje é dia de vitória</Message>
         </View>
