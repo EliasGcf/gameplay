@@ -115,18 +115,18 @@ export function CreateAppointment() {
               <View>
                 <ListHeader title="Dia e mês" style={{ marginBottom: 12 }} />
                 <Row style={{ alignItems: 'center' }}>
-                  <NumberInput />
+                  <NumberInput maxLength={2} />
                   <InputSeparator>/</InputSeparator>
-                  <NumberInput />
+                  <NumberInput maxLength={2} />
                 </Row>
               </View>
 
               <View>
                 <ListHeader title="Horário" style={{ marginBottom: 12 }} />
                 <Row style={{ alignItems: 'center' }}>
-                  <NumberInput />
+                  <NumberInput maxLength={2} />
                   <InputSeparator>:</InputSeparator>
-                  <NumberInput />
+                  <NumberInput maxLength={2} />
                 </Row>
               </View>
             </DateSection>
