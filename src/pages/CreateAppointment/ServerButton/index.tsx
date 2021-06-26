@@ -1,7 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
-import { RectButton } from 'react-native-gesture-handler';
+import { RectButton, RectButtonProps } from 'react-native-gesture-handler';
 
 import {
   Row,
@@ -14,11 +14,13 @@ import {
 
 import { theme } from '../../../global/styles/theme';
 
-export function ServerButton() {
+type ServerButtonProps = RectButtonProps & {};
+
+export function ServerButton({ ...rest }: ServerButtonProps) {
   const serverSelected = false;
 
   return (
-    <RectButton>
+    <RectButton {...rest}>
       <ServerSelect>
         {serverSelected ? (
           <ServerImage

@@ -16,7 +16,7 @@ export function PlayerItem({
   name,
   imageUrl,
   status,
-  showBottomBorder,
+  showBottomBorder = true,
 }: PlayerItemProps) {
   return (
     <Container>
