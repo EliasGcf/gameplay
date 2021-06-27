@@ -1,5 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
+
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useHeaderHeight } from '@react-navigation/stack';
+import uuid from 'react-native-uuid';
 import {
   FlatList,
   KeyboardAvoidingView,
@@ -28,44 +31,34 @@ import {
   SubmitButtonText,
   TextArea,
 } from './styles';
+import { discordApi } from '../../services/discordApi';
+import { discordAuthConfig } from '../../config/discordAuthConfig';
+import { categories } from '../../utils/categories';
+import { asyncStorageKeys } from '../../config/asyncStorageKeys';
+import { useNavigation } from '@react-navigation/native';
 
-const guilds = [
-  {
-    id: '1',
-    name: 'Lendários',
-    gameName: 'League of Legends',
-    imageUrl:
-      'https://res.cloudinary.com/eliasgcf/image/upload/v1624386003/image_1_oiiy4c.png',
-  },
-  {
-    id: '2',
-    name: 'Yeah, boy',
-    gameName: 'Red Dead Redemption 2',
-    imageUrl:
-      'https://res.cloudinary.com/eliasgcf/image/upload/v1624386003/image_1_oiiy4c.png',
-  },
-  {
-    id: '3',
-    name: 'Rumo ao topo',
-    gameName: 'Counter Strike: GO',
-    imageUrl:
-      'https://res.cloudinary.com/eliasgcf/image/upload/v1624386003/image_1_oiiy4c.png',
-  },
-  {
-    id: '4',
-    name: 'Bora queimar tudo',
-    gameName: 'Apex Legends',
-    imageUrl:
-      'https://res.cloudinary.com/eliasgcf/image/upload/v1624386003/image_1_oiiy4c.png',
-  },
-];
+type Guild = {
+  id: string;
+  name: string;
+  gameName: string;
+  imageUrl: string | null;
+};
 
 export function CreateAppointment() {
+  const [guilds, setGuilds] = useState<Guild[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedCategoryId, setSelectedCategoryId] = useState('');
-  const [selectedGuild, setSelectedGuild] = useState<typeof guilds[0] | null>(null);
+  const [selectedGuild, setSelectedGuild] = useState<Guild | null>(null);
+
   const scrollViewRef = useRef<ScrollView>(null);
   const headerHeight = useHeaderHeight();
+  const navigation = useNavigation();
+
+  const [day, setDay] = useState('');
+  const [month, setMonth] = useState('');
+  const [hour, setHour] = useState('');
+  const [minute, setMinute] = useState('');
+  const [description, setDescription] = useState('');
 
   function closeModal() {
     setIsModalOpen(false);
@@ -91,6 +84,57 @@ export function CreateAppointment() {
       Keyboard.removeListener('keyboardDidShow', handleKeyboardShow);
     };
   }, []);
+
+  useEffect(() => {
+    async function loadUserGuilds() {
+      const response = await discordApi.get('/users/@me/guilds');
+
+      const data = response.data.map((guild: any) => {
+        return {
+          id: guild.id,
+          name: guild.name,
+          gameName: 'default',
+          owner: guild.owner,
+          imageUrl: guild.icon
+            ? `${discordAuthConfig.cdnURL}/icons/${guild.id}/${guild.icon}.png`
+            : null,
+        } as Guild;
+      });
+
+      setGuilds(data);
+    }
+
+    loadUserGuilds();
+  }, []);
+
+  async function handleSubmit() {
+    const newAppointment = {
+      description,
+      id: uuid.v4(),
+      guild: selectedGuild,
+      date: `${day}/${month} às ${hour}:${minute}h`,
+      category: categories.find(category => category.id === selectedCategoryId),
+    };
+
+    const appointments = await AsyncStorage.getItem(asyncStorageKeys.appointments);
+    const parsedAppointments = appointments ? JSON.parse(appointments) : [];
+
+    await AsyncStorage.setItem(
+      asyncStorageKeys.appointments,
+      JSON.stringify([...parsedAppointments, newAppointment]),
+    );
+
+    setSelectedCategoryId('');
+    setSelectedGuild(null);
+
+    setDay('');
+    setMonth('');
+    setHour('');
+    setMinute('');
+    setDescription('');
+
+    navigation.navigate('Home');
+  }
 
   return (
     <KeyboardAvoidingView
@@ -125,18 +169,18 @@ export function CreateAppointment() {
               <View>
                 <ListHeader title="Dia e mês" style={{ marginBottom: 12 }} />
                 <Row style={{ alignItems: 'center' }}>
-                  <NumberInput maxLength={2} />
+                  <NumberInput maxLength={2} value={day} onChangeText={setDay} />
                   <InputSeparator>/</InputSeparator>
-                  <NumberInput maxLength={2} />
+                  <NumberInput maxLength={2} value={month} onChangeText={setMonth} />
                 </Row>
               </View>
 
               <View>
                 <ListHeader title="Horário" style={{ marginBottom: 12 }} />
                 <Row style={{ alignItems: 'center' }}>
-                  <NumberInput maxLength={2} />
+                  <NumberInput maxLength={2} value={hour} onChangeText={setHour} />
                   <InputSeparator>:</InputSeparator>
-                  <NumberInput maxLength={2} />
+                  <NumberInput maxLength={2} value={minute} onChangeText={setMinute} />
                 </Row>
               </View>
             </DateSection>
@@ -146,10 +190,25 @@ export function CreateAppointment() {
               description="Max 100 caracteres"
               style={{ marginBottom: 12 }}
             />
-            <TextArea style={{ textAlignVertical: 'top' }} />
+            <TextArea
+              style={{ textAlignVertical: 'top' }}
+              value={description}
+              onChangeText={setDescription}
+            />
           </Form>
 
-          <SubmitButton>
+          <SubmitButton
+            onPress={handleSubmit}
+            enabled={
+              !!day &&
+              !!month &&
+              !!hour &&
+              !!minute &&
+              !!description &&
+              !!selectedCategoryId &&
+              !!selectedGuild
+            }
+          >
             <SubmitButtonText>Agendar</SubmitButtonText>
           </SubmitButton>
         </Container>

@@ -2,6 +2,13 @@ import RankedSvg from '../assets/svgs/ranked.svg';
 import DueloSvg from '../assets/svgs/duel.svg';
 import FunSvg from '../assets/svgs/fun.svg';
 import TrainingSvg from '../assets/svgs/training.svg';
+import { SvgProps } from 'react-native-svg';
+
+export type Category = {
+  id: string;
+  title: string;
+  icon: React.FC<SvgProps>;
+};
 
 export const categories = [
   { id: '1', title: 'Ranqueada', icon: RankedSvg },

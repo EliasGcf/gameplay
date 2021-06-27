@@ -3,7 +3,9 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as AuthSession from 'expo-auth-session';
 
 import { discordApi } from '../../services/discordApi';
+
 import { discordAuthConfig } from '../../config/discordAuthConfig';
+import { asyncStorageKeys } from '../../config/asyncStorageKeys';
 
 import {
   User,
@@ -14,9 +16,8 @@ import {
 
 export const AuthContext = createContext<AuthContextData | undefined>(undefined);
 
-const ASYNC_STORAGE_BASE_KEY = '@GamePlay';
-const ASYNC_STORAGE_TOKEN_KEY = `${ASYNC_STORAGE_BASE_KEY}:token` as const;
-const ASYNC_STORAGE_USER_KEY = `${ASYNC_STORAGE_BASE_KEY}:user` as const;
+const ASYNC_STORAGE_TOKEN_KEY = `${asyncStorageKeys.base}:token` as const;
+const ASYNC_STORAGE_USER_KEY = `${asyncStorageKeys.base}:user` as const;
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [data, setData] = useState<AuthState>();
@@ -93,8 +94,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   }
 
+  async function signOut() {
+    await AsyncStorage.multiRemove([ASYNC_STORAGE_TOKEN_KEY, ASYNC_STORAGE_USER_KEY]);
+    setData(undefined);
+  }
+
   return (
-    <AuthContext.Provider value={{ user: data?.user, signIn, isLoading }}>
+    <AuthContext.Provider value={{ user: data?.user, signIn, signOut, isLoading }}>
       {children}
     </AuthContext.Provider>
   );

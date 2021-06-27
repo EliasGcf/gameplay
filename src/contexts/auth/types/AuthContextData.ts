@@ -14,6 +14,7 @@ export type AuthContextData = {
   user?: User;
   isLoading: boolean;
   signIn: () => Promise<void>;
+  signOut: () => Promise<void>;
 };
 
 export type AuthSessionResponse = AuthSessionResult & {

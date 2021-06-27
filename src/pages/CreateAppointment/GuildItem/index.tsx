@@ -29,11 +29,7 @@ export function GuildItem({
 }: GuildItemProps) {
   return (
     <Container>
-      <GuildImage
-        source={{
-          uri: imageUrl,
-        }}
-      />
+      <GuildImage source={{ uri: imageUrl }} />
 
       <Main>
         <Content>

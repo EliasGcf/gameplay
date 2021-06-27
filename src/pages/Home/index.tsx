@@ -1,14 +1,13 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { MotiView } from 'moti';
 import { TouchableOpacity, View } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
 
 import { AppointmentItem } from './AppointmentItem';
 
 import { useAuth } from '../../hooks/useAuth';
 
-import { categories } from '../../utils/categories';
-import { appointments } from '../../utils/appointments';
+import { Category } from '../../utils/categories';
 
 import {
   Container,
@@ -18,21 +17,67 @@ import {
   HomeHeaderList,
   HomeCategoryList,
 } from './styles';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { asyncStorageKeys } from '../../config/asyncStorageKeys';
+
+export type Appointment = {
+  id: string;
+  date: string;
+  category: Category;
+  description: string;
+  guild: {
+    id: string;
+    name: string;
+    gameName: string;
+    owner: boolean;
+    imageUrl: string | null;
+  };
+};
 
 export function Home() {
   const [selectedCategoryId, setSelectedCategoryId] = useState('');
+  const [appointments, setAppointments] = useState<Appointment[]>([]);
+  const [filteredAppointments, setFilteredAppointments] = useState<Appointment[]>([]);
   const navigation = useNavigation();
 
   const { user } = useAuth('isAuthenticated');
 
-  function handleOnCardPress(categoryId: string) {
+  function handleCategoryChange(categoryId: string) {
     if (categoryId === selectedCategoryId) {
       setSelectedCategoryId('');
       return;
     }
 
     setSelectedCategoryId(categoryId);
+    setFilteredAppointments(
+      appointments.filter(appointment => appointment.category.id === categoryId),
+    );
   }
+
+  function handleNavigateToAppointmentsDetails(appointment: Appointment) {
+    navigation.navigate('ServerDetails', { appointment });
+  }
+
+  useFocusEffect(
+    useCallback(() => {
+      async function loadAppointments() {
+        const response = await AsyncStorage.getItem(asyncStorageKeys.appointments);
+
+        let parsedAppointments: Appointment[] = response ? JSON.parse(response) : [];
+        setAppointments(parsedAppointments);
+
+        if (selectedCategoryId) {
+          parsedAppointments = parsedAppointments.filter(
+            findAppointment => findAppointment.category.id === selectedCategoryId,
+          );
+        }
+
+        setFilteredAppointments(parsedAppointments);
+      }
+
+      loadAppointments();
+    }, [selectedCategoryId]),
+  );
 
   return (
     <Container>
@@ -45,7 +90,7 @@ export function Home() {
       <Content>
         <HomeCategoryList
           selectedCategoryId={selectedCategoryId}
-          onCardPress={handleOnCardPress}
+          onCardPress={handleCategoryChange}
           style={{ marginLeft: 24 }}
         />
 
@@ -61,21 +106,18 @@ export function Home() {
           />
 
           <AppointmentsList
-            data={appointments}
+            data={filteredAppointments}
             renderItem={({ item }) => (
               <TouchableOpacity
                 activeOpacity={0.7}
-                onPress={() => navigation.navigate('ServerDetails')}
+                onPress={() => handleNavigateToAppointmentsDetails(item)}
               >
                 <AppointmentItem
-                  name={item.guild.name}
-                  category={
-                    categories.find(category => category.id === item.category)?.title ||
-                    ''
-                  }
                   date={item.date}
+                  name={item.guild.name}
                   isOwner={item.guild.owner}
-                  imageUrl={item.guild.icon}
+                  category={item.category.title}
+                  imageUrl={item.guild.imageUrl}
                 />
               </TouchableOpacity>
             )}

@@ -9,7 +9,7 @@ import { ListHeader } from '../../components/ListHeader';
 import { LinearBackground } from '../../components/LinearBackground';
 import { CategoryList, CategoryListProps } from '../../components/CategoryList';
 
-import { Appointment } from '../../utils/appointments';
+import { Appointment } from './index';
 
 export const Container = styled(LinearBackground)`
   flex: 1;

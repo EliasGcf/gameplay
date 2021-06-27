@@ -1,5 +1,5 @@
 import React from 'react';
-import { View } from 'react-native';
+import { TouchableOpacity, View } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 
 import { Avatar } from '../Avatar';
@@ -7,6 +7,7 @@ import { ButtonIcon } from '../ButtonIcon';
 
 import { Container, Row, Content, Message, Username, Greeting } from './styles';
 import { theme } from '../../global/styles/theme';
+import { useAuth } from '../../hooks/useAuth';
 
 export type HeaderProps = {
   name: string;
@@ -15,9 +16,13 @@ export type HeaderProps = {
 };
 
 export function Header({ name, imageUrl, onButtonIconPress }: HeaderProps) {
+  const { signOut } = useAuth();
+
   return (
     <Container style={{ alignItems: 'center' }}>
-      <Avatar urlImage={imageUrl} />
+      <TouchableOpacity activeOpacity={0.5} onPress={signOut}>
+        <Avatar urlImage={imageUrl} />
+      </TouchableOpacity>
 
       <Content>
         <View>

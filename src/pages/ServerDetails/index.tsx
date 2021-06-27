@@ -1,19 +1,13 @@
 import React from 'react';
-
+import { ParamListBase, RouteProp, useRoute } from '@react-navigation/native';
 import { View } from 'react-native';
-import { FlatList } from 'react-native';
 
 import { ButtonIcon } from '../../components/ButtonIcon';
 import { DiscordSvg } from '../../components/DiscordSvg';
 
-import { PlayerItem } from './PlayerItem';
+import { Appointment } from '../Home';
 
-export type Player = {
-  id: string;
-  name: string;
-  imageUrl: string;
-  status: 'on' | 'off';
-};
+import { PlayerItem } from './PlayerItem';
 
 import {
   Container,
@@ -27,6 +21,13 @@ import {
   ImageGradiente,
   PlayersList,
 } from './styles';
+
+export type Player = {
+  id: string;
+  name: string;
+  imageUrl: string;
+  status: 'on' | 'off';
+};
 
 const players: Player[] = [
   {
@@ -61,22 +62,25 @@ const players: Player[] = [
   },
 ];
 
+type ServerDetailsPageRouteProp = RouteProp<ParamListBase, 'ServerDetails'> & {
+  params: {
+    appointment: Appointment;
+  };
+};
+
 export function ServerDetails() {
+  const route = useRoute<ServerDetailsPageRouteProp>();
+  const { appointment } = route.params;
+
   return (
     <Container>
       <Banner>
-        <Image
-          source={{
-            uri: 'https://res.cloudinary.com/eliasgcf/image/upload/v1624386003/image_1_oiiy4c.png',
-          }}
-        />
+        <Image source={{ uri: appointment.guild.imageUrl }} />
 
         <ImageGradiente>
-          <Title>Lendários</Title>
+          <Title>{appointment.guild.name}</Title>
 
-          <Description>
-            É hoje que vamos chegar ao challenger sem perder uma partida da md10
-          </Description>
+          <Description>{appointment.description}</Description>
         </ImageGradiente>
       </Banner>
 
