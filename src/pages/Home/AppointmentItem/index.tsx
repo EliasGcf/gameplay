@@ -1,3 +1,4 @@
+import { DiscordGuildImage } from '@components/DiscordGuildImage';
 import React from 'react';
 
 import CalendarSvg from '../../../assets/svgs/calendar.svg';
@@ -18,24 +19,26 @@ import {
 } from './styles';
 
 type AppointmentItemProps = {
-  imageUrl: string;
   name: string;
-  category: string;
   date: string;
+  guildId: string;
+  category: string;
   isOwner: boolean;
+  guildIcon?: string | null;
 };
 
 export function AppointmentItem({
-  imageUrl,
   name,
-  category,
   date,
   isOwner,
+  guildId,
+  category,
+  guildIcon,
 }: AppointmentItemProps) {
   return (
     <Container>
       <ImageBorderGradiente>
-        <Image source={{ uri: imageUrl }} />
+        <DiscordGuildImage guildId={guildId} guildIcon={guildIcon} />
       </ImageBorderGradiente>
 
       <Content>

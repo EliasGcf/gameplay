@@ -2,34 +2,30 @@ import React from 'react';
 import { View } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 
-import {
-  GuildImage,
-  Container,
-  GuildName,
-  GameName,
-  Content,
-  Divisor,
-  Main,
-} from './styles';
+import { DiscordGuildImage } from '@components/DiscordGuildImage';
+
+import { Container, GuildName, GameName, Content, Divisor, Main } from './styles';
 
 import { theme } from '../../../global/styles/theme';
 
 type GuildItemProps = {
   name: string;
   game: string;
-  imageUrl: string;
+  guildId: string;
+  guildIcon?: string | null;
   showBottomBorder?: boolean;
 };
 
 export function GuildItem({
   name,
   game,
-  imageUrl,
+  guildId,
+  guildIcon,
   showBottomBorder = true,
 }: GuildItemProps) {
   return (
     <Container>
-      <GuildImage source={{ uri: imageUrl }} />
+      <DiscordGuildImage guildId={guildId} guildIcon={guildIcon} />
 
       <Main>
         <Content>

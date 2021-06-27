@@ -3,32 +3,37 @@ import { View } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import { RectButton, RectButtonProps } from 'react-native-gesture-handler';
 
+import { DiscordGuildImage } from '@components/DiscordGuildImage';
 import {
   Row,
   Block,
-  ServerImage,
+  BoxBorder,
   ServerSelect,
   ServerSelectText,
   ServerSelectDescription,
-  BoxBorder,
 } from './styles';
 
 import { theme } from '../../../global/styles/theme';
 
 type ServerButtonProps = RectButtonProps & {
   guildName?: string;
-  imageUrl?: string;
+  guildId?: string;
+  guildIcon?: string | null;
   game?: string;
 };
 
-export function ServerButton({ guildName, game, imageUrl, ...rest }: ServerButtonProps) {
-  const serverSelected = !!guildName && !!guildName;
-
+export function ServerButton({
+  guildName,
+  game,
+  guildId,
+  guildIcon,
+  ...rest
+}: ServerButtonProps) {
   return (
     <RectButton {...rest}>
       <ServerSelect>
-        {serverSelected ? (
-          <ServerImage source={{ uri: imageUrl }} />
+        {guildId ? (
+          <DiscordGuildImage guildId={guildId} guildIcon={guildIcon} />
         ) : (
           <BoxBorder>
             <Block />
@@ -39,10 +44,10 @@ export function ServerButton({ guildName, game, imageUrl, ...rest }: ServerButto
           style={{
             flex: 1,
             alignItems: 'center',
-            justifyContent: serverSelected ? 'space-between' : 'center',
+            justifyContent: guildId ? 'space-between' : 'center',
           }}
         >
-          {serverSelected ? (
+          {guildId ? (
             <View style={{ marginLeft: 20 }}>
               <ServerSelectText>{guildName}</ServerSelectText>
               <ServerSelectDescription>{game}</ServerSelectDescription>

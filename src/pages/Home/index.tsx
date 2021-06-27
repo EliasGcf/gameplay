@@ -31,7 +31,7 @@ export type Appointment = {
     name: string;
     gameName: string;
     owner: boolean;
-    imageUrl: string | null;
+    icon: string | null;
   };
 };
 
@@ -116,9 +116,10 @@ export function Home() {
                 <AppointmentItem
                   date={item.date}
                   name={item.guild.name}
+                  guildId={item.guild.id}
                   isOwner={item.guild.owner}
+                  guildIcon={item.guild.icon}
                   category={item.category.title}
-                  imageUrl={item.guild.imageUrl}
                 />
               </TouchableOpacity>
             )}

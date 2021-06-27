@@ -22,7 +22,6 @@ import { ListHeader } from '../../components/ListHeader';
 import { CategoryList } from '../../components/CategoryList';
 
 import { asyncStorageKeys } from '../../config/asyncStorageKeys';
-import { discordAuthConfig } from '../../config/discordAuthConfig';
 
 import { GuildItem } from './GuildItem';
 import { GuildsModal } from './GuildsModal';
@@ -46,7 +45,7 @@ type Guild = {
   id: string;
   name: string;
   gameName: string;
-  imageUrl: string | null;
+  icon: string | null;
 };
 
 export function CreateAppointment() {
@@ -100,9 +99,7 @@ export function CreateAppointment() {
           name: guild.name,
           gameName: 'default',
           owner: guild.owner,
-          imageUrl: guild.icon
-            ? `${discordAuthConfig.cdnURL}/icons/${guild.id}/${guild.icon}.png`
-            : null,
+          icon: guild.icon,
         } as Guild;
       });
 
@@ -166,7 +163,8 @@ export function CreateAppointment() {
             <ServerButton
               game={selectedGuild?.gameName}
               guildName={selectedGuild?.name}
-              imageUrl={selectedGuild?.imageUrl}
+              guildId={selectedGuild?.id}
+              guildIcon={selectedGuild?.icon}
               onPress={() => setIsModalOpen(true)}
             />
 
@@ -255,7 +253,8 @@ export function CreateAppointment() {
               <GuildItem
                 name={item.name}
                 game={item.gameName}
-                imageUrl={item.imageUrl}
+                guildIcon={item.icon}
+                guildId={item.id}
                 showBottomBorder={index + 1 !== guilds.length}
               />
             </TouchableOpacity>

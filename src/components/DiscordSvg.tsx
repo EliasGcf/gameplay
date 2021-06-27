@@ -1,11 +1,12 @@
 import React from 'react';
-import { SvgXml } from 'react-native-svg';
+import { SvgXml, XmlProps } from 'react-native-svg';
 
-export function DiscordSvg() {
+type DiscordSvgProps = Omit<XmlProps, 'xml'>;
+
+export function DiscordSvg({ ...rest }: DiscordSvgProps) {
   const svg = `
     <svg
-      width="24"
-      height="18"
+
       viewBox="0 0 24 18"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -24,5 +25,5 @@ export function DiscordSvg() {
     </svg>
   `;
 
-  return <SvgXml xml={svg} />;
+  return <SvgXml xml={svg} width={24} height={18} {...rest} />;
 }

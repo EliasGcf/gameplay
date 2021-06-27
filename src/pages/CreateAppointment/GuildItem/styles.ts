@@ -10,12 +10,6 @@ export const Container = styled(Row)`
   height: 80px;
 `;
 
-export const GuildImage = styled.Image`
-  width: 64px;
-  height: 68px;
-  border-radius: 8px;
-`;
-
 export const Main = styled.View`
   flex: 1;
   margin-left: 20px;

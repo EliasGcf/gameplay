@@ -47,11 +47,3 @@ export const ServerSelectDescription = styled.Text`
   line-height: 17px;
   margin-top: 4px;
 `;
-
-export const ServerImage = styled.Image`
-  width: 64px;
-  height: 68px;
-  margin: 0 0 0 -1px;
-
-  border-radius: 8px;
-`;
