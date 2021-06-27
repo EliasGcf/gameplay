@@ -2,7 +2,7 @@ import { FlatList } from 'react-native';
 import styled from 'styled-components/native';
 import { getStatusBarHeight } from 'react-native-iphone-x-helper';
 
-import { Profile } from '../../components/Header';
+import { Profile } from '../../components/Profile';
 import { ListHeader } from '../../components/ListHeader';
 import { CategoryList } from '../../components/CategoryList';
 import { LinearBackground } from '../../components/LinearBackground';
