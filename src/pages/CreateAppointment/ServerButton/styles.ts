@@ -1,4 +1,5 @@
 import styled from 'styled-components/native';
+import { LinearGradient } from 'expo-linear-gradient';
 
 import { theme } from '../../../global/styles/theme';
 
@@ -14,19 +15,22 @@ export const ServerSelect = styled(Row)`
   border: 1px solid #243189;
 `;
 
-export const Block = styled.View`
+export const BoxBorder = styled(LinearGradient).attrs({
+  colors: ['#243189', '#1B2565'],
+})`
   width: 64px;
-  height: 68px;
+  height: 67px;
+  padding: 1px;
   border-radius: 8px;
-  background: #1d2766;
+  margin-bottom: 1px;
+`;
 
-  border-top-width: 1px;
-  border-right-width: 1px;
-  border-bottom-width: 1px;
-
-  border-top-color: #243189;
-  border-right-color: #243189;
-  border-bottom-color: #243189;
+export const Block = styled(LinearGradient).attrs({
+  colors: ['#171F52', '#1D2766'],
+})`
+  flex: 1;
+  margin-left: -1px;
+  border-radius: 8px;
 `;
 
 export const ServerSelectText = styled.Text`

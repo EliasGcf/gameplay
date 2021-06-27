@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { useNavigation } from '@react-navigation/native';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useHeaderHeight } from '@react-navigation/stack';
@@ -13,8 +14,15 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
+import { discordApi } from '../../services/discordApi';
+
+import { categories } from '../../utils/categories';
+
 import { ListHeader } from '../../components/ListHeader';
 import { CategoryList } from '../../components/CategoryList';
+
+import { asyncStorageKeys } from '../../config/asyncStorageKeys';
+import { discordAuthConfig } from '../../config/discordAuthConfig';
 
 import { GuildItem } from './GuildItem';
 import { GuildsModal } from './GuildsModal';
@@ -30,12 +38,9 @@ import {
   SubmitButton,
   SubmitButtonText,
   TextArea,
+  InputBorder,
+  InputBox,
 } from './styles';
-import { discordApi } from '../../services/discordApi';
-import { discordAuthConfig } from '../../config/discordAuthConfig';
-import { categories } from '../../utils/categories';
-import { asyncStorageKeys } from '../../config/asyncStorageKeys';
-import { useNavigation } from '@react-navigation/native';
 
 type Guild = {
   id: string;
@@ -152,7 +157,7 @@ export function CreateAppointment() {
           <ListHeader title="Categoria" style={{ marginBottom: 12 }} />
           <CategoryList
             showCardCheckbox
-            styleCard={{ opacity: 0.5 }}
+            styleCard={{ opacity: selectedCategoryId ? 0.5 : 1 }}
             onCardPress={handleCategorySelected}
             selectedCategoryId={selectedCategoryId}
           />
@@ -169,18 +174,38 @@ export function CreateAppointment() {
               <View>
                 <ListHeader title="Dia e mês" style={{ marginBottom: 12 }} />
                 <Row style={{ alignItems: 'center' }}>
-                  <NumberInput maxLength={2} value={day} onChangeText={setDay} />
+                  <InputBorder>
+                    <InputBox>
+                      <NumberInput maxLength={2} value={day} onChangeText={setDay} />
+                    </InputBox>
+                  </InputBorder>
                   <InputSeparator>/</InputSeparator>
-                  <NumberInput maxLength={2} value={month} onChangeText={setMonth} />
+                  <InputBorder>
+                    <InputBox>
+                      <NumberInput maxLength={2} value={month} onChangeText={setMonth} />
+                    </InputBox>
+                  </InputBorder>
                 </Row>
               </View>
 
               <View>
                 <ListHeader title="Horário" style={{ marginBottom: 12 }} />
                 <Row style={{ alignItems: 'center' }}>
-                  <NumberInput maxLength={2} value={hour} onChangeText={setHour} />
+                  <InputBorder>
+                    <InputBox>
+                      <NumberInput maxLength={2} value={hour} onChangeText={setHour} />
+                    </InputBox>
+                  </InputBorder>
                   <InputSeparator>:</InputSeparator>
-                  <NumberInput maxLength={2} value={minute} onChangeText={setMinute} />
+                  <InputBorder>
+                    <InputBox>
+                      <NumberInput
+                        maxLength={2}
+                        value={minute}
+                        onChangeText={setMinute}
+                      />
+                    </InputBox>
+                  </InputBorder>
                 </Row>
               </View>
             </DateSection>
@@ -190,11 +215,15 @@ export function CreateAppointment() {
               description="Max 100 caracteres"
               style={{ marginBottom: 12 }}
             />
-            <TextArea
-              style={{ textAlignVertical: 'top' }}
-              value={description}
-              onChangeText={setDescription}
-            />
+            <InputBorder style={{ height: 95, width: '100%' }}>
+              <InputBox>
+                <TextArea
+                  style={{ textAlignVertical: 'top' }}
+                  value={description}
+                  onChangeText={setDescription}
+                />
+              </InputBox>
+            </InputBorder>
           </Form>
 
           <SubmitButton

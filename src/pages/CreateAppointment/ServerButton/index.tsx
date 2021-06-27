@@ -10,6 +10,7 @@ import {
   ServerSelect,
   ServerSelectText,
   ServerSelectDescription,
+  BoxBorder,
 } from './styles';
 
 import { theme } from '../../../global/styles/theme';
@@ -26,7 +27,13 @@ export function ServerButton({ guildName, game, imageUrl, ...rest }: ServerButto
   return (
     <RectButton {...rest}>
       <ServerSelect>
-        {serverSelected ? <ServerImage source={{ uri: imageUrl }} /> : <Block />}
+        {serverSelected ? (
+          <ServerImage source={{ uri: imageUrl }} />
+        ) : (
+          <BoxBorder>
+            <Block />
+          </BoxBorder>
+        )}
 
         <Row
           style={{

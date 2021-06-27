@@ -1,17 +1,19 @@
 import styled from 'styled-components/native';
+import { Platform } from 'react-native';
 import { RectButton } from 'react-native-gesture-handler';
-
-import { LinearBackground } from '../../components/LinearBackground';
-import { theme } from '../../global/styles/theme';
-import { Platform, TextInput, TextInputProps } from 'react-native';
 import { getBottomSpace } from 'react-native-iphone-x-helper';
+
+import { LinearGradient } from 'expo-linear-gradient';
+import { theme } from '../../global/styles/theme';
 
 export const Row = styled.View`
   flex-direction: row;
 `;
 
-export const Container = styled(LinearBackground)`
+export const Container = styled.View`
   padding: 32px 0 0 24px;
+  background: #0a1033;
+  flex: 1;
 `;
 
 export const Form = styled.View`
@@ -25,15 +27,28 @@ export const DateSection = styled(Row)`
   justify-content: space-between;
 `;
 
+export const InputBorder = styled(LinearGradient).attrs({
+  colors: ['#243189', '#1B2565'],
+})`
+  width: 64px;
+  height: 48px;
+  padding: 1px;
+  border-radius: 8px;
+`;
+
+export const InputBox = styled(LinearGradient).attrs({
+  colors: ['#171F52', '#1D2766'],
+})`
+  flex: 1;
+  border-radius: 8px;
+`;
+
 export const NumberInput = styled.TextInput.attrs({
   keyboardType: 'numeric',
 })`
-  width: 48px;
-  height: 48px;
-  background: #1d2766;
+  flex: 1;
   text-align: center;
   border-radius: 8px;
-  border: 1px solid #243189;
 
   font-size: 13px;
   color: ${theme.colors.heading};
@@ -53,17 +68,14 @@ export const TextArea = styled.TextInput.attrs({
   maxLength: 300,
   numberOfLines: 5,
 })`
-  height: 95px;
+  flex: 1;
   padding: 16px;
-  background: #1d2766;
-  border-radius: 8px;
-  border: 1px solid #243189;
   font-size: 13px;
   line-height: 21px;
+  border-radius: 8px;
   color: ${theme.colors.heading};
   font-family: ${theme.fonts.inter.regular};
 `;
-
 
 export const SubmitButton = styled(RectButton)`
   height: 56px;
@@ -72,6 +84,7 @@ export const SubmitButton = styled(RectButton)`
   margin-right: 24px;
   align-items: center;
   justify-content: center;
+  opacity: ${({ enabled }) => (enabled ? 1 : 0.5)};
   background: ${theme.colors.primary};
   margin-bottom: ${Platform.OS === 'ios' ? `${getBottomSpace()}px` : '16px'};
 `;
