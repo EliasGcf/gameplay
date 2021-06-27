@@ -103,7 +103,7 @@ export function Home() {
         >
           <HomeHeaderList
             title="Partidas agendadas"
-            description={`Total ${appointments.length}`}
+            description={`Total ${filteredAppointments.length}`}
           />
 
           <AppointmentsList
