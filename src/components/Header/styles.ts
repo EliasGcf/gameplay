@@ -1,7 +1,8 @@
+import { MotiView } from 'moti';
 import styled from 'styled-components/native';
 import { theme } from '../../global/styles/theme';
 
-export const Container = styled.View`
+export const Container = styled(MotiView)`
   flex-direction: row;
   align-items: center;
 `;

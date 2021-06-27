@@ -4,13 +4,12 @@ import { LinearGradient } from 'expo-linear-gradient';
 export const ContainerGradient = styled(LinearGradient)`
   height: 48px;
   width: 48px;
+  padding: 1px;
   border-radius: 8px;
-  align-items: center;
-  justify-content: center;
 `;
 
 export const Image = styled.Image`
-  height: 46px;
-  width: 46px;
+  height: 100%;
+  width: 100%;
   border-radius: 8px;
 `;

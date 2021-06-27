@@ -1,24 +1,25 @@
 import React, { useCallback, useState } from 'react';
 import { MotiView } from 'moti';
 import { TouchableOpacity, View } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
 
-import { AppointmentItem } from './AppointmentItem';
+import { Category } from '../../utils/categories';
 
 import { useAuth } from '../../hooks/useAuth';
 
-import { Category } from '../../utils/categories';
+import { asyncStorageKeys } from '../../config/asyncStorageKeys';
+
+import { AppointmentItem } from './AppointmentItem';
 
 import {
   Container,
   Content,
-  HomeHeader,
+  HomeProfile,
   AppointmentsList,
   HomeHeaderList,
   HomeCategoryList,
 } from './styles';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { asyncStorageKeys } from '../../config/asyncStorageKeys';
 
 export type Appointment = {
   id: string;
@@ -81,7 +82,7 @@ export function Home() {
 
   return (
     <Container>
-      <HomeHeader
+      <HomeProfile
         name={user.firstName}
         imageUrl={user?.avatarUrl}
         onButtonIconPress={() => navigation.navigate('CreateAppointment')}
@@ -91,7 +92,7 @@ export function Home() {
         <HomeCategoryList
           selectedCategoryId={selectedCategoryId}
           onCardPress={handleCategoryChange}
-          style={{ marginLeft: 24 }}
+          styleList={{ marginLeft: 24 }}
         />
 
         <MotiView

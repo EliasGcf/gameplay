@@ -1,13 +1,11 @@
-import React from 'react';
-import { MotiView } from 'moti';
 import { FlatList } from 'react-native';
 import styled from 'styled-components/native';
 import { getStatusBarHeight } from 'react-native-iphone-x-helper';
 
-import { Header, HeaderProps } from '../../components/Header';
+import { Profile } from '../../components/Header';
 import { ListHeader } from '../../components/ListHeader';
+import { CategoryList } from '../../components/CategoryList';
 import { LinearBackground } from '../../components/LinearBackground';
-import { CategoryList, CategoryListProps } from '../../components/CategoryList';
 
 import { Appointment } from './index';
 
@@ -16,16 +14,12 @@ export const Container = styled(LinearBackground)`
   padding-top: ${`${getStatusBarHeight() + 26}px`};
 `;
 
-export const HomeHeader = styled(MotiView).attrs((props: HeaderProps) => {
-  return {
-    from: { translateY: -100 },
-    animate: { translateY: 0 },
-    transition: { type: 'timing', duration: 500 },
-    children: <Header {...props} />,
-  };
-})<HeaderProps>`
-  padding-left: 24px;
-  padding-right: 24px;
+export const HomeProfile = styled(Profile).attrs({
+  from: { translateY: -100 },
+  animate: { translateY: 0 },
+  transition: { type: 'timing', duration: 500 },
+})`
+  padding: 0 24px;
 `;
 
 export const Content = styled.View`
@@ -33,18 +27,14 @@ export const Content = styled.View`
   flex: 1;
 `;
 
-export const HomeCategoryList = styled(MotiView).attrs((props: CategoryListProps) => {
-  return {
-    from: { translateX: 200 },
-    animate: { translateX: 0 },
-    transition: { type: 'timing', duration: 500 },
-    children: <CategoryList {...props} />,
-  };
-})<CategoryListProps>``;
+export const HomeCategoryList = styled(CategoryList).attrs({
+  from: { translateX: 200 },
+  animate: { translateX: 0 },
+  transition: { type: 'timing', duration: 500 },
+})``;
 
 export const HomeHeaderList = styled(ListHeader)`
-  padding-left: 24px;
-  padding-right: 24px;
+  padding: 0 24px;
   margin-top: 40px;
 `;
 

@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
-import { StyleProp, View } from 'react-native';
+import React from 'react';
+import { StyleProp, View, ViewStyle } from 'react-native';
+import { MotiProps } from 'moti';
 
 import { CategoryCard } from '../CategoryCard';
 import { categories } from '../../utils/categories';
 
-import { ContainerList } from './styles';
-import { ViewStyle } from 'react-native';
+import { MotiContainerList } from './styles';
 
-export type CategoryListProps = {
+export type CategoryListProps = MotiProps<ViewStyle> & {
   showCardCheckbox?: boolean;
   selectedCategoryId: string;
   styleList?: StyleProp<ViewStyle>;
@@ -21,26 +21,25 @@ export function CategoryList({
   onCardPress,
   selectedCategoryId,
   showCardCheckbox = false,
+  ...rest
 }: CategoryListProps) {
   return (
-    <View>
-      <ContainerList style={styleList}>
-        {categories.map(category => (
-          <View key={category.id} style={{ marginRight: 8 }}>
-            <CategoryCard
-              title={category.title}
-              icon={category.icon}
-              showCheckbox={showCardCheckbox}
-              isSelected={selectedCategoryId === category.id}
-              onPress={() => onCardPress(category.id)}
-              style={[
-                styleCard || {},
-                selectedCategoryId === category.id ? { opacity: 1 } : {},
-              ]}
-            />
-          </View>
-        ))}
-      </ContainerList>
-    </View>
+    <MotiContainerList {...rest} style={styleList}>
+      {categories.map(category => (
+        <View key={category.id} style={{ marginRight: 8 }}>
+          <CategoryCard
+            title={category.title}
+            icon={category.icon}
+            showCheckbox={showCardCheckbox}
+            isSelected={selectedCategoryId === category.id}
+            onPress={() => onCardPress(category.id)}
+            style={[
+              styleCard || {},
+              selectedCategoryId === category.id ? { opacity: 1 } : {},
+            ]}
+          />
+        </View>
+      ))}
+    </MotiContainerList>
   );
 }
