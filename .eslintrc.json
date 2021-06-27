@@ -22,8 +22,11 @@
   "plugins": ["react", "@typescript-eslint", "react-hooks", "prettier"],
   "rules": {
     "prettier/prettier": "error",
+    "@typescript-eslint/explicit-module-boundary-types": "off",
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
+    "react/require-default-props": "off",
+    "react/jsx-props-no-spreading": "off",
     "no-use-before-define": "off",
     "react/jsx-filename-extension": [
       1,
@@ -31,6 +34,7 @@
         "extensions": [".tsx"]
       }
     ],
+    "import/prefer-default-export": "off",
     "import/extensions": [
       "error",
       "ignorePackages",

@@ -1,5 +1,6 @@
 import React, { useCallback } from 'react';
 import { MotiView } from 'moti';
+import { ActivityIndicator, Alert } from 'react-native';
 
 import IllustrationImg from '../../assets/illustration/image.png';
 
@@ -8,9 +9,9 @@ import { useAuth } from '../../hooks/useAuth';
 import { ButtonIcon } from '../../components/ButtonIcon';
 import { DiscordSvg } from '../../components/DiscordSvg';
 
-import { Container, BackgroundImage, Content, Title, Description } from './styles';
-import { ActivityIndicator, Alert } from 'react-native';
 import { theme } from '../../global/styles/theme';
+
+import { Container, BackgroundImage, Content, Title, Description } from './styles';
 
 export function SignIn() {
   const { signIn, isLoading } = useAuth();
@@ -21,7 +22,7 @@ export function SignIn() {
     } catch (error) {
       Alert.alert('Eita!', error.message);
     }
-  }, []);
+  }, [signIn]);
 
   return (
     <Container>

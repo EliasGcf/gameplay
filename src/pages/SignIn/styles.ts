@@ -12,11 +12,11 @@ export const Container = styled(LinearBackground)`
 
 export const BackgroundImage = styled.Image`
   width: 100%;
-  max-width: 387px;
+  max-width: 375px;
 `;
 
 export const Content = styled.View`
-  margin-top: -60px;
+  margin-top: -32px;
   align-items: center;
 `;
 
