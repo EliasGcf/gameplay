@@ -2,8 +2,9 @@ import React from 'react';
 import { ParamListBase, RouteProp, useRoute } from '@react-navigation/native';
 import { View } from 'react-native';
 
-import { ButtonIcon } from '../../components/ButtonIcon';
-import { DiscordSvg } from '../../components/DiscordSvg';
+import { ButtonIcon } from '@components/ButtonIcon';
+import { DiscordSvg } from '@components/DiscordSvg';
+import { DiscordGuildImage } from '@components/DiscordGuildImage';
 
 import { Appointment } from '../Home';
 
@@ -13,7 +14,6 @@ import {
   Container,
   Banner,
   Description,
-  Image,
   Title,
   Content,
   ServerDetailsListHeader,
@@ -75,7 +75,13 @@ export function ServerDetails() {
   return (
     <Container>
       <Banner>
-        <Image source={{ uri: appointment.guild.imageUrl }} />
+        <DiscordGuildImage
+          guildId={appointment.guild.id}
+          guildIcon={appointment.guild.icon}
+          discordSvgProps={{ width: 64, height: 58 }}
+          imageStyle={{ height: '100%', width: '100%', borderRadius: 0 }}
+          containerStyle={{ flex: 1, width: '100%', borderRadius: 0 }}
+        />
 
         <ImageGradiente>
           <Title>{appointment.guild.name}</Title>

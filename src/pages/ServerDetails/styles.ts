@@ -18,14 +18,6 @@ export const Banner = styled.View`
   height: 234px;
 `;
 
-export const Image = styled.Image`
-  flex: 1;
-  padding-left: 24px;
-  padding-right: 40px;
-  padding-bottom: 24px;
-  justify-content: flex-end;
-`;
-
 export const ImageGradiente = styled(LinearGradient).attrs({
   colors: [
     'rgba(18, 29, 51, 0)',
@@ -70,7 +62,7 @@ export const ServerDetailsListHeader = styled(ListHeader)`
 
 export const PlayersList = styled(FlatList as new () => FlatList<Player>).attrs({
   showsVerticalScrollIndicator: false,
-  contentContainerStyle: { paddingLeft: 24 }
+  contentContainerStyle: { paddingLeft: 24 },
 })``;
 
 export const Footer = styled.View`

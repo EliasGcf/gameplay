@@ -1,7 +1,7 @@
 import React from 'react';
 import { SvgXml, XmlProps } from 'react-native-svg';
 
-type DiscordSvgProps = Omit<XmlProps, 'xml'>;
+export type DiscordSvgProps = Omit<XmlProps, 'xml'>;
 
 export function DiscordSvg({ ...rest }: DiscordSvgProps) {
   const svg = `
