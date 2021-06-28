@@ -1,17 +1,15 @@
-import { DiscordGuildImage } from '@components/DiscordGuildImage';
 import React from 'react';
 
-import CalendarSvg from '../../../assets/svgs/calendar.svg';
-import PlayerSvg from '../../../assets/svgs/player.svg';
+import { ListHeader } from '@components/ListHeader';
+import { CalendarSvg, PlayerSvg } from '@components/svgs';
+import { DiscordGuildImage } from '@components/DiscordGuildImage';
 
-import { ListHeader } from '../../../components/ListHeader';
 import { theme } from '../../../global/styles/theme';
 
 import {
   Container,
   Content,
   Hour,
-  Image,
   ImageBorderGradiente,
   InformationContainer,
   Row,

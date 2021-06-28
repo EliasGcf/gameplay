@@ -21,12 +21,6 @@ export const ImageBorderGradiente = styled(LinearGradient).attrs({
   border-radius: 8px;
 `;
 
-export const Image = styled.Image`
-  height: 66px;
-  width: 62px;
-  border-radius: 8px;
-`;
-
 export const Content = styled.View`
   flex: 1;
   margin-left: 20px;

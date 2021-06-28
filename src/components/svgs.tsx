@@ -1,0 +1,9 @@
+export { default as CalendarSvg } from '../assets/svgs/calendar.svg';
+export { default as DuelSvg } from '../assets/svgs/duel.svg';
+export { default as FunSvg } from '../assets/svgs/fun.svg';
+export { default as LogoGameSvg } from '../assets/svgs/logo-game.svg';
+export { default as LogoPlaySvg } from '../assets/svgs/logo-play.svg';
+export { default as PlayerSvg } from '../assets/svgs/player.svg';
+export { default as RankedSvg } from '../assets/svgs/ranked.svg';
+export { default as LogoTriangleSvg } from '../assets/svgs/splashScreen-triangle.svg';
+export { default as TrainingSvg } from '../assets/svgs/training.svg';
