@@ -142,9 +142,9 @@ export function CreateAppointment() {
           <ListHeader title="Categoria" style={{ marginBottom: 12 }} />
           <CategoryList
             showCardCheckbox
-            styleCard={{ opacity: selectedCategory ? 0.5 : 1 }}
+            isToggle={false}
             onCardPress={handleCategorySelected}
-            selectedCategoryId={selectedCategory?.id || ''}
+            styleCard={{ opacity: selectedCategory ? 0.5 : 1 }}
           />
 
           <Form>

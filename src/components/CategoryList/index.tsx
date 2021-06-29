@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback, useState } from 'react';
 import { StyleProp, View, ViewStyle } from 'react-native';
 import { MotiProps } from 'moti';
 
@@ -8,21 +8,37 @@ import { categories, Category } from '../../utils/categories';
 import { MotiContainerList } from './styles';
 
 export type CategoryListProps = MotiProps<ViewStyle> & {
+  isToggle?: boolean;
   showCardCheckbox?: boolean;
-  selectedCategoryId: string;
   styleList?: StyleProp<ViewStyle>;
   styleCard?: StyleProp<ViewStyle>;
-  onCardPress: (category: Category) => void;
+  onCardPress?: (category: Category) => void;
 };
 
 export function CategoryList({
   styleList,
   styleCard,
   onCardPress,
-  selectedCategoryId,
+  isToggle = true,
   showCardCheckbox = false,
   ...rest
 }: CategoryListProps) {
+  const [selectedCategoryId, setSelectedCategoryId] = useState('');
+
+  const handleCardPress = useCallback(
+    (category: Category) => {
+      if (isToggle && selectedCategoryId === category.id) {
+        setSelectedCategoryId('');
+        return;
+      }
+
+      setSelectedCategoryId(category.id);
+
+      if (onCardPress) onCardPress(category);
+    },
+    [onCardPress, isToggle, selectedCategoryId],
+  );
+
   return (
     <MotiContainerList {...rest} style={styleList}>
       {categories.map(category => (
@@ -32,7 +48,7 @@ export function CategoryList({
             icon={category.icon}
             showCheckbox={showCardCheckbox}
             isSelected={selectedCategoryId === category.id}
-            onPress={() => onCardPress(category)}
+            onPress={() => handleCardPress(category)}
             style={[
               styleCard || {},
               selectedCategoryId === category.id ? { opacity: 1 } : {},

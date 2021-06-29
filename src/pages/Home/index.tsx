@@ -74,7 +74,6 @@ export function Home() {
 
       <Content>
         <HomeCategoryList
-          selectedCategoryId={selectedCategoryId}
           onCardPress={handleCategoryChange}
           styleList={{ marginLeft: 24 }}
         />
