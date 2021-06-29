@@ -1,14 +1,10 @@
 import React, { useCallback, useState } from 'react';
 import { MotiView } from 'moti';
 import { TouchableOpacity, View } from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
 
-import { Category } from '../../utils/categories';
-
-import { useAuth } from '../../hooks/useAuth';
-
-import { asyncStorageKeys } from '../../config/asyncStorageKeys';
+import { useAuth } from '@hooks/useAuth';
+import { Appointment, useAppointments } from '@hooks/useAppointments';
 
 import { AppointmentItem } from './AppointmentItem';
 
@@ -20,38 +16,27 @@ import {
   HomeHeaderList,
   HomeCategoryList,
 } from './styles';
-
-export type Appointment = {
-  id: string;
-  date: string;
-  category: Category;
-  description: string;
-  guild: {
-    id: string;
-    name: string;
-    gameName: string;
-    owner: boolean;
-    icon: string | null;
-  };
-};
+import { Category } from '../../utils/categories';
 
 export function Home() {
   const [selectedCategoryId, setSelectedCategoryId] = useState('');
   const [appointments, setAppointments] = useState<Appointment[]>([]);
   const [filteredAppointments, setFilteredAppointments] = useState<Appointment[]>([]);
+
   const navigation = useNavigation();
+  const appointmentsStorage = useAppointments();
 
   const { user } = useAuth('isAuthenticated');
 
-  function handleCategoryChange(categoryId: string) {
-    if (categoryId === selectedCategoryId) {
+  function handleCategoryChange(category: Category) {
+    if (category.id === selectedCategoryId) {
       setSelectedCategoryId('');
       return;
     }
 
-    setSelectedCategoryId(categoryId);
+    setSelectedCategoryId(category.id);
     setFilteredAppointments(
-      appointments.filter(appointment => appointment.category.id === categoryId),
+      appointments.filter(appointment => appointment.category.id === category.id),
     );
   }
 
@@ -62,22 +47,21 @@ export function Home() {
   useFocusEffect(
     useCallback(() => {
       async function loadAppointments() {
-        const response = await AsyncStorage.getItem(asyncStorageKeys.appointments);
+        let storageAppointments = await appointmentsStorage.get();
 
-        let parsedAppointments: Appointment[] = response ? JSON.parse(response) : [];
-        setAppointments(parsedAppointments);
+        setAppointments(storageAppointments);
 
         if (selectedCategoryId) {
-          parsedAppointments = parsedAppointments.filter(
+          storageAppointments = storageAppointments.filter(
             findAppointment => findAppointment.category.id === selectedCategoryId,
           );
         }
 
-        setFilteredAppointments(parsedAppointments);
+        setFilteredAppointments(storageAppointments);
       }
 
       loadAppointments();
-    }, [selectedCategoryId]),
+    }, [selectedCategoryId, appointmentsStorage]),
   );
 
   return (

@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useHeaderHeight } from '@react-navigation/stack';
 import uuid from 'react-native-uuid';
 import {
@@ -14,14 +13,13 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
+import { Appointment, Guild, useAppointments } from '@hooks/useAppointments';
 import { discordApi } from '../../services/discordApi';
 
-import { categories } from '../../utils/categories';
+import { Category } from '../../utils/categories';
 
 import { ListHeader } from '../../components/ListHeader';
 import { CategoryList } from '../../components/CategoryList';
-
-import { asyncStorageKeys } from '../../config/asyncStorageKeys';
 
 import { GuildItem } from './GuildItem';
 import { GuildsModal } from './GuildsModal';
@@ -41,22 +39,16 @@ import {
   InputBox,
 } from './styles';
 
-type Guild = {
-  id: string;
-  name: string;
-  gameName: string;
-  icon: string | null;
-};
-
 export function CreateAppointment() {
   const [guilds, setGuilds] = useState<Guild[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedCategoryId, setSelectedCategoryId] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState<Category | null>(null);
   const [selectedGuild, setSelectedGuild] = useState<Guild | null>(null);
 
   const scrollViewRef = useRef<ScrollView>(null);
   const headerHeight = useHeaderHeight();
   const navigation = useNavigation();
+  const appointmentsStorage = useAppointments();
 
   const [day, setDay] = useState('');
   const [month, setMonth] = useState('');
@@ -77,8 +69,8 @@ export function CreateAppointment() {
     closeModal();
   }
 
-  function handleCategorySelected(categoryId: string) {
-    setSelectedCategoryId(categoryId);
+  function handleCategorySelected(category: Category) {
+    setSelectedCategory(category);
   }
 
   useEffect(() => {
@@ -93,7 +85,7 @@ export function CreateAppointment() {
     async function loadUserGuilds() {
       const response = await discordApi.get('/users/@me/guilds');
 
-      const data = response.data.map((guild: any) => {
+      const data = response.data.map((guild: Record<string, unknown>) => {
         return {
           id: guild.id,
           name: guild.name,
@@ -110,23 +102,19 @@ export function CreateAppointment() {
   }, []);
 
   async function handleSubmit() {
-    const newAppointment = {
+    if (!selectedCategory || !selectedGuild) return;
+
+    const newAppointment: Appointment = {
       description,
-      id: uuid.v4(),
+      id: String(uuid.v4()),
       guild: selectedGuild,
       date: `${day}/${month} às ${hour}:${minute}h`,
-      category: categories.find(category => category.id === selectedCategoryId),
+      category: selectedCategory,
     };
 
-    const appointments = await AsyncStorage.getItem(asyncStorageKeys.appointments);
-    const parsedAppointments = appointments ? JSON.parse(appointments) : [];
+    await appointmentsStorage.add(newAppointment);
 
-    await AsyncStorage.setItem(
-      asyncStorageKeys.appointments,
-      JSON.stringify([...parsedAppointments, newAppointment]),
-    );
-
-    setSelectedCategoryId('');
+    setSelectedCategory(null);
     setSelectedGuild(null);
 
     setDay('');
@@ -154,9 +142,9 @@ export function CreateAppointment() {
           <ListHeader title="Categoria" style={{ marginBottom: 12 }} />
           <CategoryList
             showCardCheckbox
-            styleCard={{ opacity: selectedCategoryId ? 0.5 : 1 }}
+            styleCard={{ opacity: selectedCategory ? 0.5 : 1 }}
             onCardPress={handleCategorySelected}
-            selectedCategoryId={selectedCategoryId}
+            selectedCategoryId={selectedCategory?.id || ''}
           />
 
           <Form>
@@ -232,7 +220,7 @@ export function CreateAppointment() {
               !!hour &&
               !!minute &&
               !!description &&
-              !!selectedCategoryId &&
+              !!selectedCategory &&
               !!selectedGuild
             }
           >

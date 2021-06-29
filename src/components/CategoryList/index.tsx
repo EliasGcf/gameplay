@@ -3,7 +3,7 @@ import { StyleProp, View, ViewStyle } from 'react-native';
 import { MotiProps } from 'moti';
 
 import { CategoryCard } from '../CategoryCard';
-import { categories } from '../../utils/categories';
+import { categories, Category } from '../../utils/categories';
 
 import { MotiContainerList } from './styles';
 
@@ -12,7 +12,7 @@ export type CategoryListProps = MotiProps<ViewStyle> & {
   selectedCategoryId: string;
   styleList?: StyleProp<ViewStyle>;
   styleCard?: StyleProp<ViewStyle>;
-  onCardPress: (categoryId: string) => void;
+  onCardPress: (category: Category) => void;
 };
 
 export function CategoryList({
@@ -32,7 +32,7 @@ export function CategoryList({
             icon={category.icon}
             showCheckbox={showCardCheckbox}
             isSelected={selectedCategoryId === category.id}
-            onPress={() => onCardPress(category.id)}
+            onPress={() => onCardPress(category)}
             style={[
               styleCard || {},
               selectedCategoryId === category.id ? { opacity: 1 } : {},
