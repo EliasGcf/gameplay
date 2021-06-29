@@ -14,7 +14,7 @@ export const TouchableContainer = styled(TouchableOpacity).attrs(props => ({
   border-radius: 8px;
   align-items: center;
   flex-direction: row;
-  background: ${theme.colors.primary};
+  background: ${theme.colors.brand.primary};
   justify-content: ${({ hasTitle }) => (hasTitle ? 'flex-start' : 'center')};
   width: ${({ hasTitle }) => (hasTitle ? '100%' : '48px')};
 `;
@@ -33,6 +33,6 @@ export const WrapperIcon = styled.View`
 export const Title = styled.Text`
   font-size: 15px;
   text-align: center;
-  color: ${theme.colors.heading};
+  color: ${theme.colors.texts.heading};
   font-family: ${theme.fonts.inter.medium};
 `;

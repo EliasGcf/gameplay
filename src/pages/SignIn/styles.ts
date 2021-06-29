@@ -25,7 +25,7 @@ export const Title = styled.Text`
   line-height: 40px;
   text-align: center;
   margin-bottom: 16px;
-  color: ${theme.colors.heading};
+  color: ${theme.colors.texts.heading};
   font-family: ${theme.fonts.rajdhani.bold};
 `;
 
@@ -34,6 +34,6 @@ export const Description = styled.Text`
   line-height: 25px;
   text-align: center;
   margin-bottom: 64px;
-  color: ${theme.colors.heading};
+  color: ${theme.colors.texts.heading};
   font-family: ${theme.fonts.inter.regular};
 `;

@@ -51,7 +51,7 @@ export function AppointmentItem({
             <PlayerSvg
               width={16}
               height={16}
-              fill={isOwner ? theme.colors.primary : theme.colors.on}
+              fill={isOwner ? theme.colors.brand.primary : theme.colors.others.online}
             />
             <UserType isOwner={isOwner}>{isOwner ? 'Anfitrião' : 'Visitante'}</UserType>
           </Row>

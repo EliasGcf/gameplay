@@ -51,7 +51,7 @@ export const NumberInput = styled.TextInput.attrs({
   border-radius: 8px;
 
   font-size: 13px;
-  color: ${theme.colors.heading};
+  color: ${theme.colors.texts.heading};
   font-family: ${theme.fonts.inter.regular};
 `;
 
@@ -59,7 +59,7 @@ export const InputSeparator = styled.Text`
   margin: 0 4px;
   font-size: 15px;
   line-height: 20px;
-  color: ${theme.colors.subheading};
+  color: ${theme.colors.texts.body};
   font-family: ${theme.fonts.inter.medium};
 `;
 
@@ -73,7 +73,7 @@ export const TextArea = styled.TextInput.attrs({
   font-size: 13px;
   line-height: 21px;
   border-radius: 8px;
-  color: ${theme.colors.heading};
+  color: ${theme.colors.texts.heading};
   font-family: ${theme.fonts.inter.regular};
 `;
 
@@ -85,12 +85,12 @@ export const SubmitButton = styled(RectButton)`
   align-items: center;
   justify-content: center;
   opacity: ${({ enabled }) => (enabled ? 1 : 0.5)};
-  background: ${theme.colors.primary};
+  background: ${theme.colors.brand.primary};
   margin-bottom: ${Platform.OS === 'ios' ? `${getBottomSpace()}px` : '16px'};
 `;
 
 export const SubmitButtonText = styled.Text`
   font-size: 15px;
-  color: ${theme.colors.heading};
+  color: ${theme.colors.texts.heading};
   font-family: ${theme.fonts.inter.medium};
 `;

@@ -26,14 +26,14 @@ export const Content = styled(Row)`
 export const GuildName = styled.Text`
   font-size: 18px;
   font-family: ${theme.fonts.rajdhani.bold};
-  color: ${theme.colors.heading};
+  color: ${theme.colors.texts.heading};
 `;
 
 export const GameName = styled.Text`
   font-size: 13px;
   margin-top: 4px;
   line-height: 17px;
-  color: ${theme.colors.subheading};
+  color: ${theme.colors.texts.body};
   font-family: ${theme.fonts.inter.regular};
 `;
 

@@ -34,7 +34,11 @@ export function GuildItem({
             <GameName>{game}</GameName>
           </View>
 
-          <FontAwesome name="chevron-right" size={10} color={theme.colors.heading} />
+          <FontAwesome
+            name="chevron-right"
+            size={10}
+            color={theme.colors.texts.heading}
+          />
         </Content>
 
         {showBottomBorder && <Divisor />}

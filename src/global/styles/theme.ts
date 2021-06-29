@@ -1,12 +1,26 @@
 export const theme = {
   colors: {
-    primary: '#E51C44',
+    brand: {
+      primary: '#E51C44',
+      secondary: '#495BCC',
+      linearBackground: ['#0E1647', '#0A1033'],
+    },
 
-    background: '#0d133d',
-    heading: '#DDE3F0',
-    subheading: '#ABB1CC',
+    texts: {
+      heading: '#DDE3F0',
+      body: '#ABB1CC',
+    },
 
-    on: '#32BD50',
+    shapes: {
+      boxLinear: ['#171F52', '#1D2766'],
+      strokeLinear: ['#243189', '#1B2565'],
+    },
+
+    others: {
+      online: '#32BD50',
+      offline: '#E51C44',
+      busy: '#D07622',
+    },
   },
 
   backgroundGradient: {

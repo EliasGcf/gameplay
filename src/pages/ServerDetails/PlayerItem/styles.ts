@@ -22,20 +22,20 @@ export const UserInfo = styled.View`
 export const Username = styled.Text`
   font-size: 18px;
   font-family: ${theme.fonts.rajdhani.bold};
-  color: ${theme.colors.heading};
+  color: ${theme.colors.texts.heading};
 `;
 
 export const Dot = styled.View`
   height: 8px;
   width: 8px;
-  background: ${theme.colors.on};
+  background: ${theme.colors.others.online};
   border-radius: 4px;
 `;
 
 export const Status = styled.Text`
   font-size: 13px;
   font-family: ${theme.fonts.inter.regular};
-  color: ${theme.colors.subheading};
+  color: ${theme.colors.texts.body};
   margin-left: 8px;
   line-height: 17px;
 `;

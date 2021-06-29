@@ -1,8 +1,8 @@
 import React from 'react';
 import { TouchableOpacity } from 'react-native';
-import { FontAwesome5 } from '@expo/vector-icons';
+import { FontAwesome5, MaterialCommunityIcons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
+
 import { createStackNavigator } from '@react-navigation/stack';
 
 import { Home } from '../pages/Home';
@@ -36,14 +36,14 @@ export function AppRoutes() {
           headerShown: true,
           headerTitle: 'Detalhes',
           headerTitleAlign: 'center',
-          headerTintColor: theme.colors.heading,
+          headerTintColor: theme.colors.texts.heading,
           headerBackTitleVisible: false,
           headerLeftContainerStyle: { marginLeft: 16 },
           headerBackImage: () => (
             <MaterialCommunityIcons
               name="arrow-left"
               size={24}
-              color={theme.colors.heading}
+              color={theme.colors.texts.heading}
             />
           ),
           headerRightContainerStyle: { marginRight: 20 },
@@ -53,7 +53,11 @@ export function AppRoutes() {
           ),
           headerRight: () => (
             <TouchableOpacity activeOpacity={0.7}>
-              <FontAwesome5 name="share-alt" size={24} color={theme.colors.primary} />
+              <FontAwesome5
+                name="share-alt"
+                size={24}
+                color={theme.colors.brand.primary}
+              />
             </TouchableOpacity>
           ),
         }}
@@ -66,14 +70,14 @@ export function AppRoutes() {
           headerTitleAlign: 'center',
           headerBackTitleVisible: false,
           headerTitle: 'Agendar partida',
-          headerTintColor: theme.colors.heading,
+          headerTintColor: theme.colors.texts.heading,
           headerLeftContainerStyle: { marginLeft: 16 },
           headerTitleStyle: { fontSize: 20, fontFamily: theme.fonts.rajdhani.bold },
           headerBackImage: () => (
             <MaterialCommunityIcons
               name="arrow-left"
               size={24}
-              color={theme.colors.heading}
+              color={theme.colors.texts.heading}
             />
           ),
           headerBackground: () => (

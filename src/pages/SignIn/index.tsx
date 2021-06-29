@@ -48,7 +48,7 @@ export function SignIn() {
             <ActivityIndicator
               style={{ height: 56 }}
               size={24}
-              color={theme.colors.primary}
+              color={theme.colors.brand.primary}
             />
           ) : (
             <ButtonIcon

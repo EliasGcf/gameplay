@@ -1,8 +1,8 @@
 import styled from 'styled-components/native';
 import { LinearGradient, LinearGradientProps } from 'expo-linear-gradient';
 
-import { theme } from '../../global/styles/theme';
 import { RectButton } from 'react-native-gesture-handler';
+import { theme } from '../../global/styles/theme';
 
 type ContentGradientProps = LinearGradientProps & {
   isSelected: boolean;
@@ -39,12 +39,13 @@ export const Checkbox = styled.View<CheckboxProps>`
   height: 8px;
   width: 8px;
   border-width: 1px;
-  border-color: ${({ isChecked }) => (isChecked ? theme.colors.primary : '#243189')};
+  border-color: ${({ isChecked }) =>
+    isChecked ? theme.colors.brand.primary : '#243189'};
   border-radius: 2px;
   position: absolute;
   top: 8px;
   right: 8px;
-  background: ${({ isChecked }) => (isChecked ? theme.colors.primary : '#0e1647')};
+  background: ${({ isChecked }) => (isChecked ? theme.colors.brand.primary : '#0e1647')};
 `;
 
 export const ButtonContainer = styled(RectButton)`
@@ -58,7 +59,7 @@ export const ButtonContainer = styled(RectButton)`
 
 export const Title = styled.Text`
   font-size: 15px;
-  color: ${theme.colors.heading};
+  color: ${theme.colors.texts.heading};
   font-family: ${theme.fonts.rajdhani.bold};
   margin-top: 16px;
 `;

@@ -55,7 +55,7 @@ export function ServerButton({
           ) : (
             <ServerSelectText>Selecione um servidor</ServerSelectText>
           )}
-          <FontAwesome name="chevron-right" size={8} color={theme.colors.heading} />
+          <FontAwesome name="chevron-right" size={8} color={theme.colors.texts.heading} />
         </Row>
       </ServerSelect>
     </RectButton>

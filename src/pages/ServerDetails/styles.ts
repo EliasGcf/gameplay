@@ -38,13 +38,13 @@ export const ImageGradiente = styled(LinearGradient).attrs({
 
 export const Title = styled.Text`
   font-size: 28px;
-  color: ${theme.colors.heading};
+  color: ${theme.colors.texts.heading};
   font-family: ${theme.fonts.rajdhani.bold};
 `;
 
 export const Description = styled.Text`
   font-size: 13px;
-  color: ${theme.colors.heading};
+  color: ${theme.colors.texts.heading};
   font-family: ${theme.fonts.inter.regular};
   line-height: 21px;
   margin-top: 12px;

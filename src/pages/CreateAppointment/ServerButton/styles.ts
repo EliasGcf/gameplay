@@ -36,12 +36,12 @@ export const Block = styled(LinearGradient).attrs({
 export const ServerSelectText = styled.Text`
   font-size: 18px;
   margin-right: 24px;
-  color: ${theme.colors.heading};
+  color: ${theme.colors.texts.heading};
   font-family: ${theme.fonts.rajdhani.bold};
 `;
 
 export const ServerSelectDescription = styled.Text`
-  color: ${theme.colors.subheading};
+  color: ${theme.colors.texts.body};
   font-size: 13px;
   font-family: ${theme.fonts.inter.regular};
   line-height: 17px;

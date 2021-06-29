@@ -43,14 +43,15 @@ export const InformationContainer = styled.View`
 `;
 
 export const Hour = styled.Text`
-  color: ${theme.colors.heading};
+  color: ${theme.colors.texts.heading};
   font-size: 13px;
   font-family: ${theme.fonts.inter.medium};
   margin-left: 6px;
 `;
 
 export const UserType = styled.Text<UserTypeProps>`
-  color: ${({ isOwner }) => (isOwner ? theme.colors.primary : theme.colors.on)};
+  color: ${({ isOwner }) =>
+    isOwner ? theme.colors.brand.primary : theme.colors.others.online};
   font-size: 13px;
   font-family: ${theme.fonts.inter.regular};
   margin-left: 4px;

@@ -74,7 +74,7 @@ export function Profile({
 
         <ButtonIcon
           onPress={onButtonIconPress}
-          Icon={<MaterialIcons name="add" size={24} color={theme.colors.heading} />}
+          Icon={<MaterialIcons name="add" size={24} color={theme.colors.texts.heading} />}
         />
       </Content>
 
@@ -91,7 +91,7 @@ export function Profile({
               <ModalCardText>
                 Deseja sair do{' '}
                 <ModalCardTextLogo>
-                  Game<Text style={{ color: theme.colors.primary }}>Play</Text>?
+                  Game<Text style={{ color: theme.colors.brand.primary }}>Play</Text>?
                 </ModalCardTextLogo>
               </ModalCardText>
 
