@@ -2,12 +2,12 @@ import { FlatList } from 'react-native';
 import styled from 'styled-components/native';
 import { getStatusBarHeight } from 'react-native-iphone-x-helper';
 
+import { Appointment } from '@hooks/useAppointments';
+
 import { Profile } from '../../components/Profile';
 import { ListHeader } from '../../components/ListHeader';
 import { CategoryList } from '../../components/CategoryList';
 import { LinearBackground } from '../../components/LinearBackground';
-
-import { Appointment } from './index';
 
 export const Container = styled(LinearBackground)`
   flex: 1;
