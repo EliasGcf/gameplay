@@ -1,6 +1,8 @@
 import { LinearGradient } from 'expo-linear-gradient';
 import React from 'react';
 
+import { theme } from '@global/styles/theme';
+
 import { Avatar } from '../../../components/Avatar';
 
 import { Container, Content, Dot, Row, Status, UserInfo, Username } from './styles';
@@ -33,7 +35,7 @@ export function PlayerItem({
         </UserInfo>
 
         {showBottomBorder && (
-          <LinearGradient colors={['#171F52', '#1D2766']} style={{ height: 1 }} />
+          <LinearGradient colors={theme.colors.shapes.boxLinear} style={{ height: 1 }} />
         )}
       </Content>
     </Container>

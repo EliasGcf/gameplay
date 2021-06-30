@@ -2,6 +2,8 @@ import React, { ReactNode } from 'react';
 import { ModalProps, Pressable, View } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 
+import { theme } from '../../../global/styles/theme';
+
 import { Bar, Modal, Overlay } from './styles';
 
 type GuildsModalProps = ModalProps & {
@@ -21,7 +23,7 @@ export function GuildsModal({ children, closeModal, ...rest }: GuildsModalProps)
       <Pressable style={{ flex: 1 }} onPress={closeModal}>
         <Overlay>
           <LinearGradient
-            colors={['#0A1033', '#0E1647']}
+            colors={theme.colors.brand.linearBackground}
             style={{
               height: '85%',
               paddingTop: 13,

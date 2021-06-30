@@ -11,6 +11,10 @@ import {
 import { MotiProps } from 'moti';
 import { MaterialIcons } from '@expo/vector-icons';
 
+import { theme } from '@global/styles/theme';
+
+import { useAuth } from '@hooks/useAuth';
+
 import { Avatar } from '../Avatar';
 import { ButtonIcon } from '../ButtonIcon';
 
@@ -28,8 +32,6 @@ import {
   ModalCardButton,
   ModalCardButtonText,
 } from './styles';
-import { theme } from '../../global/styles/theme';
-import { useAuth } from '../../hooks/useAuth';
 
 export type ProfileProps = MotiProps<ViewStyle> & {
   name: string;
@@ -101,7 +103,7 @@ export function Profile({
                   type="cancel"
                   style={{
                     borderWidth: 1,
-                    borderColor: '#495BCC',
+                    borderColor: theme.colors.brand.secondary,
                     marginRight: 4,
                   }}
                 >

@@ -13,7 +13,7 @@ export function LinearBackground({ children, style }: LinearBackgroundProps) {
   return (
     <LinearGradient
       style={[{ flex: 1 }, style]}
-      colors={[theme.backgroundGradient.from, theme.backgroundGradient.to]}
+      colors={theme.colors.brand.linearBackground}
     >
       {children}
     </LinearGradient>

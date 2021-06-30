@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { theme } from '../../global/styles/theme';
+
 import { ContainerGradient, Image } from './styles';
 
 type AvatarProps = {
@@ -8,7 +10,7 @@ type AvatarProps = {
 
 export function Avatar({ urlImage }: AvatarProps) {
   return (
-    <ContainerGradient colors={['#243189', '#1B2565']}>
+    <ContainerGradient colors={theme.colors.shapes.strokeLinear}>
       <Image source={{ uri: urlImage }} />
     </ContainerGradient>
   );

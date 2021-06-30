@@ -6,7 +6,6 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import { Home } from '../pages/Home';
-import { SignIn } from '../pages/SignIn';
 import { SplashScreenPage } from '../pages/SplashScreen';
 import { ServerDetails } from '../pages/ServerDetails';
 import { CreateAppointment } from '../pages/CreateAppointment';
@@ -49,7 +48,7 @@ export function AppRoutes() {
           headerRightContainerStyle: { marginRight: 20 },
           headerTitleStyle: { fontSize: 20, fontFamily: theme.fonts.rajdhani.bold },
           headerBackground: () => (
-            <LinearGradient style={{ flex: 1 }} colors={['#1D2766', '#171F52']} />
+            <LinearGradient style={{ flex: 1 }} colors={theme.colors.shapes.boxLinear} />
           ),
           headerRight: () => (
             <TouchableOpacity activeOpacity={0.7}>
@@ -81,7 +80,7 @@ export function AppRoutes() {
             />
           ),
           headerBackground: () => (
-            <LinearGradient style={{ flex: 1 }} colors={['#1D2766', '#171F52']} />
+            <LinearGradient style={{ flex: 1 }} colors={theme.colors.shapes.boxLinear} />
           ),
         }}
       />
