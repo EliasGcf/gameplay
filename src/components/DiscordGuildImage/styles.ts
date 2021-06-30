@@ -1,13 +1,17 @@
 import { View, Image as RNImage } from 'react-native';
 import styled from 'styled-components/native';
 
-export const Container = styled(View)`
+type ContainerProps = {
+  hasIcon: boolean;
+};
+
+export const Container = styled(View)<ContainerProps>`
   width: 64px;
   height: 68px;
   border-radius: 8px;
   align-items: center;
   justify-content: center;
-  background: #7289da;
+  background: ${({ hasIcon }) => (hasIcon ? 'transparent' : '#7289da')};
 `;
 
 export const Image = styled(RNImage)`

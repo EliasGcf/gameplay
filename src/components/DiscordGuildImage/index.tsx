@@ -22,7 +22,7 @@ export function DiscordGuildImage({
   discordSvgProps,
 }: DiscordGuildImageProps) {
   return (
-    <Container style={containerStyle}>
+    <Container hasIcon={!!guildIcon} style={containerStyle}>
       {guildIcon ? (
         <Image
           style={imageStyle}
