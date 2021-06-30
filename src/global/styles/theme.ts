@@ -32,6 +32,45 @@ export const theme = {
     inter: {
       regular: 'Inter_400Regular',
       medium: 'Inter_500Medium',
+      bold: 'Inter_700Bold',
+    },
+
+    text: {
+      13: {
+        fontSize: 13,
+        lineHeight: 20,
+        fontFamily: 'Inter_400Regular',
+      },
+
+      15: {
+        fontSize: 15,
+        lineHeight: 25,
+        fontFamily: 'Inter_400Regular',
+      },
+    },
+
+    heading: {
+      18: {
+        fontSize: 18,
+        lineHeight: 32,
+        fontFamily: 'Inter_700Bold',
+      },
+
+      24: {
+        fontSize: 24,
+        fontFamily: 'Rajdhani_700Bold',
+      },
+
+      28: {
+        fontSize: 28,
+        fontFamily: 'Rajdhani_700Bold',
+      },
+
+      40: {
+        fontSize: 28,
+        lineHeight: 50,
+        fontFamily: 'Rajdhani_700Bold',
+      },
     },
   },
 };
