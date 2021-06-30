@@ -15,8 +15,9 @@ import { theme } from '@global/styles/theme';
 
 import { useAuth } from '@hooks/useAuth';
 
+import { IconButton } from '@components/IconButton';
+
 import { Avatar } from '../Avatar';
-import { ButtonIcon } from '../ButtonIcon';
 
 import {
   Container,
@@ -74,7 +75,7 @@ export function Profile({
           <Message>Hoje é dia de vitória</Message>
         </View>
 
-        <ButtonIcon
+        <IconButton
           onPress={onButtonIconPress}
           Icon={<MaterialIcons name="add" size={24} color={theme.colors.texts.heading} />}
         />

@@ -2,14 +2,14 @@ import React, { useCallback } from 'react';
 import { MotiView } from 'moti';
 import { ActivityIndicator, Alert } from 'react-native';
 
+import { theme } from '@global/styles/theme';
+
+import { useAuth } from '@hooks/useAuth';
+
+import { DiscordSvg } from '@components/DiscordSvg';
+import { ButtonWithIcon } from '@components/ButtonWithIcon';
+
 import IllustrationImg from '../../assets/illustration/image.png';
-
-import { useAuth } from '../../hooks/useAuth';
-
-import { ButtonIcon } from '../../components/ButtonIcon';
-import { DiscordSvg } from '../../components/DiscordSvg';
-
-import { theme } from '../../global/styles/theme';
 
 import { Container, BackgroundImage, Content, Title, Description } from './styles';
 
@@ -51,7 +51,7 @@ export function SignIn() {
               color={theme.colors.brand.primary}
             />
           ) : (
-            <ButtonIcon
+            <ButtonWithIcon
               Icon={<DiscordSvg />}
               style={{ width: 274 }}
               title="Entrar com Discord"

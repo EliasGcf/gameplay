@@ -2,11 +2,11 @@ import React from 'react';
 import { ParamListBase, RouteProp, useRoute } from '@react-navigation/native';
 import { View } from 'react-native';
 
-import { ButtonIcon } from '@components/ButtonIcon';
 import { DiscordSvg } from '@components/DiscordSvg';
+import { ButtonWithIcon } from '@components/ButtonWithIcon';
 import { DiscordGuildImage } from '@components/DiscordGuildImage';
 
-import { Appointment } from '../Home';
+import { Appointment } from '@hooks/useAppointments';
 
 import { PlayerItem } from './PlayerItem';
 
@@ -111,7 +111,7 @@ export function ServerDetails() {
       </Content>
 
       <Footer>
-        <ButtonIcon title="Entrar na partida" Icon={<DiscordSvg />} />
+        <ButtonWithIcon title="Entrar na partida" Icon={<DiscordSvg />} />
       </Footer>
     </Container>
   );
